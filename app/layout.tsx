@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-screen`}>
+      <body className={`${inter.className} min-w-screen min-h-screen`}>
         <div className="bg-[#FEFEFE0D] h-16"></div>
         <div className="grid grid-cols-[49px_1fr]">
           <div className="w-16 h-[calc(100vh-49px)] bg-[#FEFEFE08]">

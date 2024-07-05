@@ -7,7 +7,7 @@ const NavButtons = () => {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState("inbox");
   return (
-    <div className="grid justify-center gap-5 mt-7">
+    <div className="grid justify-center w-full gap-5 mt-7">
       <button
         onClick={() => {
           router.push("2323/inbox");
