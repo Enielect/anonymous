@@ -43,7 +43,7 @@ const ModalCard: React.FC<ModalCardProps> = ({ type }) => {
         </div>
         <button
           className={`p-[5px]  ${
-            type == "inbox" && "border-[#06D440] border"
+            type == "inbox" && "bg-[#06D4400D] border-[#06D440] border"
           } rounded-md flex-grow`}
           onClick={type == "inbox" ? setInboxModalActive : setDeleteModalActive}
         >

@@ -10,7 +10,7 @@ const NavButtons = () => {
     <div className="grid justify-center w-full gap-5 mt-7">
       <button
         onClick={() => {
-          router.push("2323/inbox");
+          router.push("/inbox");
           setActiveButton("inbox");
         }}
         className={`w-9 rounded-md px-2 ${
