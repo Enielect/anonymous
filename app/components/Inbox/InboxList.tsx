@@ -1,6 +1,6 @@
 import { InboxData } from "@/app/utils/DummyData";
 import React from "react";
-import InboxItem from "./InboxItem";
+import InboxItem from "@/app/components/Inbox/InboxItem";
 
 const InboxList = () => {
   return (

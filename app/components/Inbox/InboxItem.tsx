@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 import useInboxStore from "@/app/store/InboxStore";
+import Link from "next/link";
 import React from "react";
 
 interface InboxItemProp {
@@ -10,14 +11,14 @@ interface InboxItemProp {
 }
 
 const InboxItem: React.FC<InboxItemProp> = ({ inbox_name, messages, date }) => {
-  const setDeleteModalActive = useInboxStore((state) => state.setDeleteModalActive);
+  const { setDeleteModalActive, setEditModalActive } = useInboxStore();
   return (
     <div className="bg-[#FEFEFE08] grid grid-cols-4 py-[10px] rounded-[8px] px-[20px] w-full justify-between items-center">
       <div>{inbox_name}</div>
-      <div className="text-[#06D440]">{messages} Messages</div>
+      <Link href='/2323/inbox' className="text-[#06D440]">{messages} Messages</Link>
       <span>{date}</span>
       <div className="flex justify-end items-center">
-        <button>
+        <button onClick={setEditModalActive}>
           <svg
             width="34"
             height="34"
