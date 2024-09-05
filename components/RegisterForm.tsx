@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
-import useInboxStore from "../store/InboxStore";
 
 interface FormType {
   title: string;
@@ -10,7 +9,6 @@ interface FormType {
   firstLabel: string;
   secondLabel?: string;
   buttonText: string;
-  action?: () => void;
   path: string;
   type?: string;
 }
@@ -21,12 +19,10 @@ const RegisterForm: FC<FormType> = ({
   firstLabel,
   secondLabel,
   buttonText,
-  action,
   path,
   type,
 }) => {
   const router = useRouter();
-  const { setInboxModalActive, setEditModalActive } = useInboxStore();
   return (
     <div className="absolute top-1/2  left-1/2 -translate-y-1/2 px-6 -translate-x-1/2">
       <div className="max-w-[800px] gap-10 bg-[#FEFEFE08] items-center py-10 h-[280px] rounded-xl  flex justify-between px-7">
@@ -87,10 +83,10 @@ const RegisterForm: FC<FormType> = ({
             </div>
           )}
           <button
-            onClick={() => {
-              action && action();
-              router.push(path);
-            }}
+            // onClick={() => {
+            //   action && action();
+            //   router.push(path);
+            // }}
             className="bg-[#06D440] block w-full py-2 rounded-md"
           >
             {buttonText}
