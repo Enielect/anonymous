@@ -1,6 +1,5 @@
 import InboxHeader from "@/components/Inbox/InboxHeader";
 import InboxList from "@/components/Inbox/InboxList";
-import RenderModal from "@/components/modal/RenderModal";
 import { InboxData } from "@/utils/DummyData";
 import React from "react";
 
