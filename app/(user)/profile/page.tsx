@@ -1,11 +1,11 @@
 import React from "react";
-import ProfileContent from "@/app/components/Profile/ProfileContent";
+import ProfileContent from "@/components/Profile/ProfileContent";
 
 const Profile = () => {
   return (
-    <>
+    <div className="h-[calc(100vh-57px)]">
       <ProfileContent />
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import InboxMessages from "@/app/components/Inbox/InboxMessages";
+import InboxMessages from "@/components/Inbox/InboxMessages";
 
 function Inbox() {
   return (
