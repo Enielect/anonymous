@@ -1,6 +1,5 @@
 "use client";
 
-import useInboxStore from "@/store/InboxStore";
 import Link from "next/link";
 import React, { useState } from "react";
 import Modal from "../Modal";

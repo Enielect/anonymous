@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import RegisterForm from "../RegisterForm";
-import useInboxStore from "@/store/InboxStore";
 import Modal from "../Modal";
 
 const ProfileContent = () => {
