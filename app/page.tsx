@@ -1,11 +1,10 @@
 import Image from "next/image";
-import RenderRegForm from "@/app/components/RenderRegForm";
-
+import RenderRegForm from "@/components/RenderRegForm";
 
 export default function Home() {
   return (
     <main className="">
-     <RenderRegForm />
+      <RenderRegForm />
     </main>
   );
 }
