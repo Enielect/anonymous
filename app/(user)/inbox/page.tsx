@@ -1,33 +1,38 @@
 import InboxHeader from "@/components/Inbox/InboxHeader";
 import InboxList from "@/components/Inbox/InboxList";
+import { verifySession } from "@/lib/dal";
+import { base_url } from "@/lib/utils";
 import { InboxData } from "@/utils/DummyData";
 import React from "react";
 
-const InboxHome = () => {
-  {
-    /* <RenderModal /> */
-  }
+async function getAllInboxes() {
+  const { userId } = await verifySession();
+  const response = await fetch(`${base_url}/users/${userId}/inboxes`);
+  const data = await response.json();
+  return data;
+}
+
+async function InboxHome() {
+  const allInboxes = await getAllInboxes();
   return (
-    <>
+    <div className="h-full">
       <div className="fixed w-full px-6 pr-[5.3rem] py-4 bg-[#151515]">
         <InboxHeader />
-        {InboxData.length > 0 && <InboxListHeader />}
+        {allInboxes.length > 0 && <InboxListHeader />}
       </div>
-      <section className="w-full py-4 pt-[110px]  h-full">
-        <div className=" flex items-center">
-          {/* if there is no inbox */}
-          {/* if there is an inbox */}
-          {InboxData.length > 0 && (
-            <div className="w-full ">
-              <InboxList />
+      <section className="w-full  pt-[110px]  h-full">
+        <div className=" flex h-full items-center">
+          {allInboxes.length > 0 && (
+            <div className="w-full h-full">
+              <InboxList allInboxes={allInboxes} />
             </div>
           )}
         </div>
       </section>
-      {InboxData.length === 0 && <NoInbox />}
-    </>
+      {allInboxes.length === 0 && <NoInbox />}
+    </div>
   );
-};
+}
 
 export default InboxHome;
 
