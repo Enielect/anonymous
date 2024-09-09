@@ -3,8 +3,10 @@ import RenderRegForm from "@/components/RenderRegForm";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="h-full">
+      {/*creating an inbox*/}
       <RenderRegForm />
+      <p>this is eniola</p>
     </main>
   );
 }
