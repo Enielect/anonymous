@@ -1,23 +1,16 @@
 import React from "react";
-import RegisterForm from "@/components/RegisterForm";
 import InputMessage from "../../../components/card/InputMessage";
 import ConfirmSend from "../../../components/card/ConfirmSend";
+import Login from "./Login";
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <div>
-      <RegisterForm
-        title="Log in"
-        remark="Log in to your account"
-        path="/"
-        firstLabel="Enter Email"
-        secondLabel="Enter Password"
-        buttonText="Log in"
-      />
+      <Login />
       {/* <InputMessage /> */}
       {/* <ConfirmSend /> */}
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;

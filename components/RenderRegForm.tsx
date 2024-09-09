@@ -1,24 +1,27 @@
 "use client";
-
 import React from "react";
 
-import RegisterForm from "@/components/RegisterForm";
-
-interface InboxState {
-  inboxModalActive: boolean;
-  setInboxModalActive: () => void;
-}
+import RegisterForm, { ActionButton, Input } from "@/components/RegisterForm";
+import { useFormState } from "react-dom";
+import { createInboxAction } from "@/app/actions/inbox";
 
 const RenderRegForm = () => {
+  const [state, action] = useFormState(createInboxAction, undefined);
   return (
     <div>
-      <RegisterForm
-        title="Create"
-        firstLabel="Edit Inbox Name"
-        path={`/${2323}/inbox`}
-        remark="your new Inbox"
-        buttonText="Create Inbox"
-      />
+      <form action={action}>
+        <RegisterForm
+          title="Create"
+          firstField={
+            <>
+              <Input label="Edit Inbox Name" formName="inboxName" />{" "}
+              {state?.errors.inboxName && <p>{state.errors.inboxName}</p>}
+            </>
+          }
+          remark="your new Inbox"
+          actionButton={<ActionButton buttonText="Create Inbox" />}
+        />
+      </form>
     </div>
   );
 };

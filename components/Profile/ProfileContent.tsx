@@ -1,30 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
-import RegisterForm from "../RegisterForm";
+import RegisterForm, { ActionButton, Input } from "../RegisterForm";
 import Modal from "../Modal";
+import { useFormState } from "react-dom";
+import { editProfileAction } from "@/app/actions/profile";
 
 const ProfileContent = () => {
   const [editModal, setEditModal] = useState(false);
-  // const { setInboxModalActive, inboxModalActive } = useInboxStore();
+  const [state, action] = useFormState(editProfileAction, undefined);
   return (
     <>
       <Modal isOpen={editModal} onClose={() => setEditModal(false)}>
-        <RegisterForm
-          type="modal"
-          title="Edit"
-          remark="your profile information"
-          path="/"
-          firstLabel="change Email"
-          secondLabel="Edit ID"
-          buttonText="Save Profile"
-        />
+        <form action={action}>
+          <RegisterForm
+            title="Edit"
+            usernameField={
+              <>
+                <Input label="Edit Username" formName="username" />
+                {state?.errors.username && <p>{state.errors.username}</p>}
+              </>
+            }
+            firstField={
+              <>
+                <Input label="Change Email" formName="email" />
+                {state?.errors.email && <p>{state.errors.email}</p>}
+              </>
+            }
+            secondField={
+              <>
+                <Input label="Edit ID" formName="profileId" />
+                {state?.errors.password && <p>{state.errors.password}</p>}
+              </>
+            }
+            remark="your profile information"
+            actionButton={<ActionButton buttonText="Save Profile" />}
+          />
+        </form>
       </Modal>
       <div className="h-full">
-        {/* {inboxModalActive && (
-        <div className="absolute flex justify-center items-center w-full h-full bg-[#151515F2] backdrop-blur-sm">
-          </div>
-      )} */}
         <section className="w-full pt-7 px-8 bg-[#151515] h-full">
           <div className="flex justify-between items-center">
             <div className="font-bold text-2xl">

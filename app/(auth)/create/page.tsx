@@ -1,17 +1,10 @@
-import RegisterForm from "@/components/RegisterForm";
 import React from "react";
+import SignUp from "./SignUp";
 
 const CreateAccountPage = () => {
   return (
     <div>
-      <RegisterForm
-        title="Create Account"
-        remark="Join our platform today"
-        path="/"
-        firstLabel="Enter Email"
-        secondLabel="Enter Password"
-        buttonText="Log in"
-      />
+      <SignUp />
     </div>
   );
 };
