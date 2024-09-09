@@ -1,10 +1,6 @@
 "use client";
 
-import React from "react";
-
-
-
-
+import React, { ReactNode } from "react";
 
 export const InboxModalCard = ({ onClose }: { onClose: () => void }) => {
   // const setInboxModalActive = useInboxStore(
@@ -36,7 +32,13 @@ export const InboxModalCard = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
-export const DeleteModalCard = ({ onClose }: { onClose: () => void }) => {
+export const DeleteModalCard = ({
+  onClose,
+  children,
+}: {
+  onClose: () => void;
+  children: ReactNode;
+}) => {
   return (
     <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
       <div className="font-medium text-[12px] my-2">
@@ -46,14 +48,8 @@ export const DeleteModalCard = ({ onClose }: { onClose: () => void }) => {
         Inbox Link
       </div>
       <div className="flex justify-between w-full mt-3">
-        <div className="flex-grow">
-          <button
-            className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
-            onClick={onClose}
-          >
-            Confirm
-          </button>
-        </div>
+        {/* submit button to perform delete action */}
+        <div className="flex-grow">{children}</div>
         <button className={`p-[5px]  rounded-md flex-grow`} onClick={onClose}>
           Cancel
         </button>
