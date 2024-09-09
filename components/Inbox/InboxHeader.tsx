@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Modal from "../Modal";
-import RegisterForm from "../RegisterForm";
 import { InboxModalCard } from "../modal/ModalCard";
 
 const InboxHeader = () => {
