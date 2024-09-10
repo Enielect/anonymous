@@ -1,12 +1,24 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import RegisterForm, { ActionButton, Input } from "@/components/RegisterForm";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { createInboxAction } from "@/app/actions/inbox";
 
-const RenderRegForm = () => {
+type RenderRegFormProp = {
+  onSuccess?: () => void;
+};
+
+const RenderRegForm = ({ onSuccess }: RenderRegFormProp) => {
   const [state, action] = useFormState(createInboxAction, undefined);
+  const { pending } = useFormStatus();
+
+  useEffect(() => {
+    if (state && !state.errors && !pending) {
+      onSuccess && onSuccess();
+    }
+  }, [state, pending, onSuccess]);
+
   return (
     <div>
       <form action={action}>
@@ -19,7 +31,11 @@ const RenderRegForm = () => {
             </>
           }
           remark="your new Inbox"
-          actionButton={<ActionButton buttonText="Create Inbox" />}
+          actionButton={
+            <ActionButton
+              buttonText={pending ? "Creating..." : "Create Inbox"}
+            />
+          }
         />
       </form>
     </div>
