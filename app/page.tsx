@@ -6,7 +6,6 @@ export default function Home() {
     <main className="h-full">
       {/*creating an inbox*/}
       <RenderRegForm />
-      <p>this is eniola</p>
     </main>
   );
 }
