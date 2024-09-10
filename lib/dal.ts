@@ -14,10 +14,6 @@ export const verifySession = cache(async () => {
 });
 
 export const getUser = cache(async (formData: FormData) => {
-  const session = await verifySession();
-
-  if (!session) return null;
-
   try {
     const user = await fetch(`${base_url}/login`, {
       method: "POST",
@@ -25,8 +21,7 @@ export const getUser = cache(async (formData: FormData) => {
     });
     const response = await user.json();
 
-    if (response.id === session.userId) updateSessiion();
-    else createSession(response.id);
+    createSession(response.id);
   } catch (error) {
     throw new Error("Invalid credentials");
   }
