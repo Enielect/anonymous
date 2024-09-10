@@ -2,6 +2,7 @@
 
 import { verifySession } from "@/lib/dal";
 import { base_url } from "@/lib/utils";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -11,6 +12,9 @@ async function createInbox(submitData: string) {
 
   const response = await fetch(`${base_url}/users/${userId}/inboxes`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: submitData,
   });
 }
@@ -41,12 +45,34 @@ export async function createInboxAction(prev: any, formData: FormData) {
   redirect("/inbox");
 }
 
+/*Learn from this*/
+
 export async function deleteInbox(inboxId: string) {
+  const { userId } = await verifySession();
   try {
     const response = await fetch(`${base_url}/inboxes/${inboxId}`, {
       method: "DELETE",
+      headers: {
+        "User-Id": userId.toString(),
+      },
     });
-  } catch (err) {
-    throw new Error("Inbox deletion failed");
+
+    if (!response.ok) {
+      throw new Error(`Failed to delete inbox: ${response.status}`);
+    }
+
+    const data = await response.json();
+    // Handle the JSON response here
+    console.log("Inbox deleted successfully:", data);
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      console.error("Error parsing JSON response:", error);
+      // Handle the specific SyntaxError
+    } else {
+      console.error("Error deleting inbox:", error);
+    }
   }
+
+  revalidatePath("/inbox");
 }
+
