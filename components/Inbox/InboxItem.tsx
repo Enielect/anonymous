@@ -6,6 +6,7 @@ import Modal from "../Modal";
 import RegisterForm, { ActionButton, Input } from "../RegisterForm";
 import { DeleteModalCard } from "../modal/ModalCard";
 import { deleteInbox } from "@/app/actions/inbox";
+import { useRouter } from "next/navigation";
 
 interface InboxItemProp {
   inbox_name: string;
@@ -23,10 +24,12 @@ const InboxItem: React.FC<InboxItemProp> = ({
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [pending, startTransition] = useTransition();
+  const router = useRouter();
 
   function handleDelete() {
     startTransition(async () => {
       await deleteInbox(inbox_id);
+      router.refresh();
     });
   }
   return (
@@ -47,7 +50,7 @@ const InboxItem: React.FC<InboxItemProp> = ({
             className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
             onClick={handleDelete}
           >
-            {pending ? "Deleting" : "Confirm"}
+            {pending ? "Deleting..." : "Confirm"}
           </button>
         </DeleteModalCard>
       </Modal>

@@ -7,7 +7,6 @@ interface FormType {
   remark: string;
   firstField: ReactNode;
   secondField?: ReactNode;
-  usernameField?: ReactNode;
   actionButton: ReactNode;
 }
 
@@ -16,7 +15,6 @@ const RegisterForm: FC<FormType> = ({
   remark,
   firstField,
   secondField,
-  usernameField,
   actionButton,
 }) => {
   return (
@@ -29,7 +27,6 @@ const RegisterForm: FC<FormType> = ({
           <span className="block text-sm  text-[#FEFEFEB2]">{remark}</span>
         </div>
         <div className="space-y-5 w-[300px]">
-          {usernameField && usernameField}
           {firstField}
           {secondField && secondField}
           {actionButton}

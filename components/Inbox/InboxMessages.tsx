@@ -4,15 +4,17 @@ import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import Modal from "../Modal";
 import { DeleteModalCard } from "../modal/ModalCard";
+import { convertTimeFormat, getTimeAgo } from "@/lib/utils";
 
 type Message = {
-  content: string;
-  time: string;
+  body: string;
+  created_at: string;
   id: string;
 };
 
 type InboxMessageProp = {
   inboxMessages: Message[];
+  inboxName: string;
 };
 
 // const MessageData: Message[] = [
@@ -54,21 +56,22 @@ type InboxMessageProp = {
 //   },
 // ];
 
-const InboxMessages = ({ inboxMessages }: InboxMessageProp) => {
+const InboxMessages = ({ inboxMessages, inboxName }: InboxMessageProp) => {
+  console.log(inboxMessages, "inboxMessages");
   return (
     <div>
-      <TopNav />
+      <TopNav name={inboxName} />
       <div className="space-y-3 px-5 py-5 pt-[80px]">
-        {inboxMessages.map(({ content, id, time }) => (
+        {inboxMessages.map(({ body, id, created_at }) => (
           <div
             key={id}
             className="flex justify-between gap-[50px] px-5  py-3 border-l border-[#06D440] text-sm text-[#FEFEFEB2]"
           >
             <div>
-              <span>{content}</span>
+              <span>{body}</span>
             </div>
             <div>
-              <span>{time || 0}</span>
+              <span>{getTimeAgo(created_at) || 0}</span>
             </div>
           </div>
         ))}
@@ -77,7 +80,7 @@ const InboxMessages = ({ inboxMessages }: InboxMessageProp) => {
   );
 };
 
-function TopNav() {
+function TopNav({ name }: { name: string }) {
   const [isDelete, setIsDelete] = useState(false);
   const [pending, startTransition] = useTransition();
   function handleDelete() {}
@@ -96,7 +99,7 @@ function TopNav() {
       <div className="flex fixed w-full justify-between px-5 py-3 pr-[70px] bg-[#080808]">
         <div className="flex items-center gap-3">
           <BackButton />
-          <span>Tech Bros and Sis</span>
+          <span>{name}</span>
         </div>
         <div className="space-x-3">
           <button className="bg-[#FEFEFE0D] border border-[#06D440] inbox-button">
