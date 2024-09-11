@@ -2,14 +2,13 @@
 
 import { getUser } from "@/lib/dal";
 import { FormState, LoginSchema, SignUpSchema } from "@/lib/definitions";
-import { createSession, updateSessiion } from "@/lib/session";
+import { createSession } from "@/lib/session";
 import { base_url } from "@/lib/utils";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function loginAction(prev: any, formData: FormData) {
   const entries = Object.fromEntries(formData.entries());
-  console.log(entries);
   const validatedFields = LoginSchema.safeParse(entries);
 
   if (!validatedFields.success) {
@@ -21,9 +20,9 @@ export async function loginAction(prev: any, formData: FormData) {
   } catch (e) {
     // throw new Error("Invalid credentials");
     console.log(e);
-    return {message: ["Invalid credentials"]  };
+    return { message: ["Invalid credentials"] };
   }
-  redirect("/");
+  redirect("/inbox");
 }
 
 export async function signUpAction(prev: any, formData: FormData) {
@@ -45,5 +44,5 @@ export async function signUpAction(prev: any, formData: FormData) {
     throw new Error("Sign up failed");
   }
 
-  redirect("/");
+  redirect("/inbox");
 }

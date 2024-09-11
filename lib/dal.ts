@@ -1,12 +1,14 @@
+import "server-only";
+
 import { cookies } from "next/headers";
 import { cache } from "react";
 import "server-only";
-import { createSession, decrypt, updateSessiion } from "./session";
+import { createSession, decrypt, deleteSession } from "./session";
 import { redirect } from "next/navigation";
 import { base_url } from "./utils";
 
 export const verifySession = cache(async () => {
-  const cookie = cookies().get("session")?.value;
+  const cookie = cookies().get("session")?.value; 
   const session = await decrypt(cookie);
 
   if (!session?.userId) redirect("/login");
@@ -14,6 +16,8 @@ export const verifySession = cache(async () => {
 });
 
 export const getUser = cache(async (formData: FormData) => {
+  const cookie = cookies().get("session")?.value;
+  const session = await decrypt(cookie);
   try {
     const user = await fetch(`${base_url}/login`, {
       method: "POST",
@@ -21,8 +25,13 @@ export const getUser = cache(async (formData: FormData) => {
     });
     const response = await user.json();
 
-    createSession(response.id);
+    // if (!response.ok) throw new Error("Failed to fetch user");
+
+    if (!session?.userId && session) deleteSession();
+    await createSession(response.id);
   } catch (error) {
+    if (error instanceof TypeError && error.message.includes("Network error"))
+      console.error("Failed to fetch user:", error);
     throw new Error("Invalid credentials");
   }
 });

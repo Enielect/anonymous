@@ -13,11 +13,13 @@ export async function sendMessage(id: string, prev: any, formData: FormData) {
         "Content-Type": "application/json",
       },
     });
+    console.log(response);
 
     if (!response.ok) throw new Error("Failed to create message");
     const data = await response.json();
     return { message: data.created_at };
   } catch (error) {
     console.log(error);
+    return { error: "Failed to send message" };
   }
 }
