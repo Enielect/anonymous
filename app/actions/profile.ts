@@ -27,32 +27,28 @@ function removeEmptyStringProperties(formData: FormData): FormData {
 export async function editProfileAction(prev: any, formData: FormData) {
   const resultData = removeEmptyStringProperties(formData);
   const entries = Object.fromEntries(resultData.entries());
-  console.log(entries);
-
-  // const validatedFields = SignUpSchema.safeParse(entries);
-
-  // if (!validatedFields.success) {
-  //   return { errors: validatedFields.error.flatten().fieldErrors };
-  // }
 
   const payload = await verifySession();
 
   try {
-    const user = await fetch(`${base_url}/users/${payload.userId}`, {
+    const response = await fetch(`${base_url}/users/${payload.userId}`, {
       method: "PUT",
       body: JSON.stringify(entries),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const response = await user.json();
-    console.log(response);
-    return { message: response.message };
+    if (response.ok) {
+      revalidatePath("/profile");
+      return { message: "Profile updated successfully" };
+    }
+    const user = await response.json();
+    return { message: user.message };
   } catch (e) {
     throw new Error("Edit profile failed");
   }
 
-  revalidatePath("/profile");
+  // return { message: "Profile updated successfully" };
 
   // redirect("/profile");
 }
@@ -76,18 +72,20 @@ export async function editUserPasswordAction(prev: any, formData: FormData) {
       },
     });
     const response = await user.json();
+    if (!response.ok) throw new Error("Failed to edit password");
     console.log(response);
   } catch (e) {
     throw new Error("Edit profile failed");
   }
 
   revalidatePath("/profile");
+  return { message: "Password updated successfully" };
 
   // redirect("/profile");
 }
 
 export async function logOutUser() {
-  await deleteSession();
+  deleteSession();
 
   redirect("/login");
 }
@@ -95,14 +93,15 @@ export async function logOutUser() {
 export async function deleteUser() {
   const { userId } = await verifySession();
   try {
-    const response = await fetch(`${base_url}/users/${userId}`);
+    const response = await fetch(`${base_url}/users/${userId}`, {
+      method: "DELETE",
+    });
 
     if (!response.ok) throw new Error("failed to delete user");
-
-    const data = await response.json();
-    console.log("user successfully deleted", data);
+    deleteSession();
+    console.log("user successfully deleted");
   } catch (err) {
-    console.log(err);
+    console.log(err, "failed to delete user now");
   }
 
   redirect("/login");
