@@ -7,9 +7,16 @@ import React from "react";
 
 async function getAllInboxes() {
   const { userId } = await verifySession();
-  const response = await fetch(`${base_url}/users/${userId}/inboxes`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${base_url}/users/${userId}/inboxes`);
+    if (!response.ok) throw new Error("Failed to fetch user inboxes");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes("Network error"))
+      console.log("Network failure", error);
+    else console.error("Other error", error);
+  }
 }
 
 async function InboxHome() {
@@ -20,16 +27,20 @@ async function InboxHome() {
         <InboxHeader />
         {allInboxes.length > 0 && <InboxListHeader />}
       </div>
-      <section className="w-full  pt-[110px]  h-full">
-        <div className=" flex h-full items-center">
-          {allInboxes.length > 0 && (
+      {allInboxes.length > 0 && (
+        <section className="w-full  pt-[110px]  h-full">
+          <div className=" flex h-full items-center">
             <div className="w-full h-full">
               <InboxList allInboxes={allInboxes} />
             </div>
-          )}
+          </div>
+        </section>
+      )}
+      {allInboxes.length === 0 && (
+        <div className="flex justify-center items-center min-h-[calc(100vh-69px)]">
+          <NoInbox />
         </div>
-      </section>
-      {allInboxes.length === 0 && <NoInbox />}
+      )}
     </div>
   );
 }

@@ -3,14 +3,26 @@ import ProfileContent from "@/components/Profile/ProfileContent";
 import { verifySession } from "@/lib/dal";
 import { base_url } from "@/lib/utils";
 
-const Profile = async () => {
+async function fetchUserData() {
   const { userId } = await verifySession();
-  const { username, email } = await fetch(`${base_url}/users/${userId}`)
-    .then((res) => res.json())
-    .then((data) => ({ username: data.username, email: data.email }));
+  try {
+    const response = await fetch(`${base_url}/users/${userId}`);
+    if (!response.ok) {
+      throw new Error("Failed to Fetch user");
+    }
+    const data = await response.json();
+    return { username: data.username, email: data.email };
+  } catch (error) {
+    console.error("Failed to fetch user:", error);
+    // Handle the error here
+  }
+}
+
+const Profile = async () => {
+  const userData = await fetchUserData();
   return (
     <div className="h-[calc(100vh-57px)]">
-      <ProfileContent username={username} email={email} />
+      <ProfileContent username={userData?.username} email={userData?.email} />
     </div>
   );
 };

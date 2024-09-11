@@ -10,13 +10,26 @@ async function createInbox(submitData: string) {
   const { userId } = await verifySession();
   console.log(userId);
 
-  const response = await fetch(`${base_url}/users/${userId}/inboxes`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: submitData,
-  });
+  try {
+    const response = await fetch(`${base_url}/users/${userId}/inboxes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: submitData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to create inbox: ${response.status}`);
+    }
+
+    const data = await response.json();
+    // Handle the JSON response here
+    console.log("Inbox created successfully:", data);
+  } catch (error) {
+    console.error("Error creating inbox:", error);
+    // Handle the error here
+  }
 }
 
 const CreateInboxSchema = z.object({
@@ -29,7 +42,6 @@ const CreateInboxSchema = z.object({
 export async function createInboxAction(prev: any, formData: FormData) {
   const entries = Object.fromEntries(formData.entries());
   const submitData = JSON.stringify({ name: entries.inboxName });
-  console.log(entries);
   const validatedFields = CreateInboxSchema.safeParse(entries);
 
   if (!validatedFields.success) {
@@ -42,7 +54,8 @@ export async function createInboxAction(prev: any, formData: FormData) {
     throw new Error("Inbox creation failed");
   }
 
-  redirect("/inbox");
+  revalidatePath("/inbox");
+  return { message: "success" };
 }
 
 /*Learn from this*/
@@ -74,5 +87,5 @@ export async function deleteInbox(inboxId: string) {
   }
 
   revalidatePath("/inbox");
+  redirect('/inbox');
 }
-
