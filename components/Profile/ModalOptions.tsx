@@ -4,9 +4,10 @@ import {
   editProfileAction,
   editUserPasswordAction,
 } from "@/app/actions/profile";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { ProfileInput } from "./ProfileInput";
 import RegisterForm, { ActionButton, Input } from "../RegisterForm";
+import { useEffect } from "react";
 
 type UpdateChoiceProp = {
   setEditProfileState: (arg: "password" | "username/email") => void;
@@ -39,8 +40,17 @@ export function UpdateChoice({ setEditProfileState }: UpdateChoiceProp) {
   );
 }
 
-export function EditUserEmailForm() {
+type EditProp = {
+  close: () => void;
+};
+
+export function EditUserEmailForm({ close }: EditProp) {
   const [state, action] = useFormState(editProfileAction, undefined);
+  useEffect(() => {
+    if (state?.message === "Profile updated successfully") {
+      close();
+    }
+  }, [state?.message, close]);
 
   return (
     <form action={action}>
@@ -60,7 +70,8 @@ export function EditUserEmailForm() {
               formName="username"
             />
             <ProfileInput label="Change Email(optional)" formName="email" />
-            <ActionButton buttonText="Save Profile" />
+            <EditUserButton />
+
             {state?.message && <p>{state.message}</p>}
           </div>
         </div>
@@ -69,11 +80,22 @@ export function EditUserEmailForm() {
   );
 }
 
-export function PasswordResetForm() {
+function EditUserButton() {
+  const { pending } = useFormStatus();
+  return <ActionButton buttonText={pending ? "Saving..." : "Save Profile"} />;
+}
+
+export function PasswordResetForm({ close }: EditProp) {
   const [passwordState, passwordAction] = useFormState(
     editUserPasswordAction,
     undefined
   );
+
+  useEffect(() => {
+    if (passwordState?.message === "Profile updated successfully") {
+      close();
+    }
+  }, [passwordState?.message, close]);
   return (
     <form action={passwordAction}>
       <RegisterForm
@@ -81,7 +103,7 @@ export function PasswordResetForm() {
         firstField={
           <>
             <Input label="Enter New Password" formName="newPassword" />
-            {passwordState?.errors.newPassword && (
+            {passwordState?.errors?.newPassword && (
               <p>{passwordState.errors.newPassword}</p>
             )}
           </>

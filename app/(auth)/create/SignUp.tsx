@@ -1,15 +1,12 @@
 "use client";
 
-import { loginAction, signUpAction } from "@/app/actions/auth";
-import { useRouter } from "next/navigation";
-import React, { FC } from "react";
+import { signUpAction } from "@/app/actions/auth";
+import Link from "next/link";
+import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 const SignUp = () => {
-  const router = useRouter();
-
   const [state, action] = useFormState(signUpAction, undefined);
-  const { pending } = useFormStatus();
 
   if (state?.errors?.password) console.log(state.errors.password);
   return (
@@ -80,25 +77,31 @@ const SignUp = () => {
               </div>
             )}
           </div>
-          <button
-            // onClick={() => {
-            //   action && action();
-            //   router.push(path);
-            // }}
-            disabled={pending}
-            type="submit"
-            className="bg-[#06D440] block w-full py-2 rounded-md"
-          >
-            Sign Up
-          </button>
+          <SignUpButton />
           <span className="block">
             Don&apos;t Have An Acccount{" "}
-            <span className="text-[#06D440] cursor-pointer ml-1">Log in</span>
+            <Link href="/login" className="text-[#06D440] cursor-pointer ml-1">
+              Log in
+            </Link>
           </span>
         </div>
       </div>
     </form>
   );
 };
+
+function SignUpButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      disabled={pending}
+      type="submit"
+      className="bg-[#06D440] block w-full py-2 rounded-md"
+    >
+      {pending ? "Registering..." : "Sign Up"}
+    </button>
+  );
+}
 
 export default SignUp;

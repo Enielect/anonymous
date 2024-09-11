@@ -11,13 +11,6 @@ type RenderRegFormProp = {
 
 const RenderRegForm = ({ onSuccess }: RenderRegFormProp) => {
   const [state, action] = useFormState(createInboxAction, undefined);
-  const { pending } = useFormStatus();
-
-  useEffect(() => {
-    if (state && !state.errors && !pending) {
-      onSuccess && onSuccess();
-    }
-  }, [state, pending, onSuccess]);
 
   return (
     <div>
@@ -27,19 +20,33 @@ const RenderRegForm = ({ onSuccess }: RenderRegFormProp) => {
           firstField={
             <>
               <Input label="Edit Inbox Name" formName="inboxName" />{" "}
-              {state?.errors.inboxName && <p>{state.errors.inboxName}</p>}
+              {state?.errors?.inboxName && <p>{state?.errors.inboxName}</p>}
             </>
           }
           remark="your new Inbox"
           actionButton={
-            <ActionButton
-              buttonText={pending ? "Creating..." : "Create Inbox"}
-            />
+            <CreateInboxButton onSuccess={onSuccess} state={state} />
           }
         />
       </form>
     </div>
   );
 };
+
+type CreateInboxButtonProp = {
+  onSuccess?: () => void;
+  state: any;
+};
+
+function CreateInboxButton({ onSuccess, state }: CreateInboxButtonProp) {
+  const { pending } = useFormStatus();
+
+  useEffect(() => {
+    if (state && !state.errors && !pending) {
+      onSuccess && onSuccess();
+    }
+  }, [state, pending, onSuccess]);
+  return <ActionButton buttonText={pending ? "Creating..." : "Create Inbox"} />;
+}
 
 export default RenderRegForm;

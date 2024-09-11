@@ -1,15 +1,12 @@
 "use client";
 
-import { loginAction, signUpAction } from "@/app/actions/auth";
-import { useRouter } from "next/navigation";
+import { loginAction } from "@/app/actions/auth";
+import Link from "next/link";
 import React, { FC } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 const Login = () => {
-  const router = useRouter();
-
   const [state, action] = useFormState(loginAction, undefined);
-  const { pending } = useFormStatus();
 
   if (state?.errors?.password) console.log(state.errors.password);
   return (
@@ -19,27 +16,6 @@ const Login = () => {
     >
       <div className="max-w-[800px] gap-10 bg-[#FEFEFE08] items-center py-10 min-h-[280px] rounded-xl  flex justify-between px-7">
         <div className="w-[200px]">
-          {/* {type == "modal" && (
-            <button
-              className="absolute top-[30px] left-[40px]"
-              onClick={
-                buttonText === "Edit" ? setEditModalActive : setInboxModalActive
-              }
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"name
-              >
-                <path
-                  d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z"
-                  fill="#E8EAED"
-                />
-              </svg>
-            </button>
-          )} */}
           <span className="capitalize text-3xl font-bold block mb-2 text-[#FEFEFE]">
             Log In
           </span>
@@ -88,25 +64,32 @@ const Login = () => {
               <p className="text-red-500 text-sm pt-2">{state?.message}</p>
             )}
           </div>
-          <button
-            // onClick={() => {
-            //   action && action();
-            //   router.push(path);
-            // }}
-            disabled={pending}
-            type="submit"
-            className="bg-[#06D440] block w-full py-2 rounded-md"
-          >
-            Log In
-          </button>
+          <LoginButton />
+
           <span className="block">
             Already have an account?{" "}
-            <span className="text-[#06D440] cursor-pointer ml-1">Sign up</span>
+            <Link href="/create" className="text-[#06D440] cursor-pointer ml-1">
+              Sign up
+            </Link>
           </span>
         </div>
       </div>
     </form>
   );
 };
+
+function LoginButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      disabled={pending}
+      type="submit"
+      className="bg-[#06D440] block w-full py-2 rounded-md"
+    >
+      {pending ? "Processing..." : "Log In"}
+    </button>
+  );
+}
 
 export default Login;
