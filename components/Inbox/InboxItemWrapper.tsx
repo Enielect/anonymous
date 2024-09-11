@@ -9,29 +9,42 @@ interface InboxItemProp {
   date: string;
 }
 
+async function findMessags(inbox_id: string) {
+  const { userId } = await verifySession();
+
+  try {
+    const response = await fetch(`${base_url}/inboxes/${inbox_id}/messages`, {
+      method: "GET", // HTTP method
+      headers: {
+        "User-Id": userId.toString(), // Passing the User-Id in the headers
+        "Content-Type": "application/json", // Optional: If you are expecting JSON response
+      },
+    });
+
+    if (!response.ok)
+      throw new Error(`Failed to fetch messages: ${response.status}`);
+    const messages = await response.json();
+    return messages;
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
+}
+
 const InboxItemWrapper = async ({
   inbox_name,
   inbox_id,
   date,
 }: InboxItemProp) => {
-  const user_id = await verifySession();
-  const inbox = await fetch(`${base_url}/inboxes/${inbox_id}/messages`, {
-    method: "GET", // HTTP method
-    headers: {
-      "User-Id": user_id.userId.toString(), // Passing the User-Id in the headers
-      "Content-Type": "application/json", // Optional: If you are expecting JSON response
-    },
-  });
-  const response = await inbox.json();
-  console.log(inbox_id);
-  console.log(response);
-  const messages = response.length;
+  const messages = await findMessags(inbox_id);
+  // console.log(inbox_id);
+  // console.log(response);
+  const messagesLength = messages.length;
   return (
     <>
       <InboxItem
         inbox_name={inbox_name}
         inbox_id={inbox_id}
-        messages={messages}
+        messages={messagesLength}
         date={date}
       />
     </>
