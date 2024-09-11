@@ -1,4 +1,5 @@
 export const base_url = process.env.BASE_URL;
+export const web_url = process.env.NEXT_PUBLIC_WEB_URL
 
 export function convertTimeFormat(isoTime: string) {
   const date = new Date(isoTime);
@@ -35,4 +36,4 @@ export function getTimeAgo(isoTime: string): string {
 // Example usage:
 const isoTime = "2023-12-31T23:59:59Z"; // Replace with your ISO time
 const timeAgo = getTimeAgo(isoTime);
-console.log(timeAgo); // Output: "10 months ago"
+//console.log(timeAgo); // Output: "10 months ago"
