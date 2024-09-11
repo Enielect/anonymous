@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Figma, Github, Linkedin, MailIcon, Twitter } from "lucide-react";
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-black text-white sticky top-0 z-10">
+      <header className="bg-black text-white sticky top-0 z-50">
         <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
           <a href="/#hero" className="text-xl font-bold">
             Whispers
@@ -25,8 +25,15 @@ export default function LandingPage() {
         {/* Intro Section */}
         <section
           id="hero"
-          className="relative h-screen flex items-center  justify-center text-white"
+          className="relative  h-screen flex items-center   justify-center text-white"
         >
+          <div
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, white 20%, black 100%)",
+            }}
+            className="absolute w-screen"
+          ></div>
           <Image
             src="/images/whisper-hero.png"
             alt="Whispers Cover"
@@ -113,29 +120,80 @@ export default function LandingPage() {
                 communication to foster genuine connections and open dialogues.
               </p>
               <div className="mb-8">
-                <h3 className="text-2xl font-semibold mb-4">Our Team</h3>
+                <h3 className="text-2xl font-semibold mb-4 py-2">Our Team</h3>
                 <div className="flex justify-center space-x-6">
-                  {[1, 2, 3].map((member) => (
-                    <div key={member} className="flex space-x-2">
-                      <Link href="#" className="hover:text-gray-300">
-                        <Github className="w-6 h-6" />
-                      </Link>
-                      <Link href="#" className="hover:text-gray-300">
-                        <Linkedin className="w-6 h-6" />
-                      </Link>
-                      <Link href="#" className="hover:text-gray-300">
-                        <Twitter className="w-6 h-6" />
-                      </Link>
+                  {[
+                    {
+                      name: "Ukeme",
+                      role: "Project Lead, Backend Engineer",
+                      links: [
+                        "https://www.github.com/Ukeme-Edet",
+                        "https://www.linkedin.com/in/ukeme-edet-12961a227",
+                        "https://twitter.com/ukeme__edet",
+                      ],
+                    },
+                    {
+                      name: "Eniola",
+                      role: "Frontend Engineer",
+                      links: [
+                        "https://www.github.com/Enielect",
+                        "https://www.linkedin.com/in/eniola-abayomi-045605232",
+                        "https://twitter.com/enielect",
+                      ],
+                    },
+                  ].map((member) => (
+                    <div className="" key={member.name}>
+                      <p>{member.name}</p>
+                      <p>({member.role})</p>
+                      <div className="flex justify-center py-2 space-x-2">
+                        <Link
+                          href={member.links[0]}
+                          className="hover:text-gray-300"
+                        >
+                          <Github className="w-6 h-6" />
+                        </Link>
+                        <Link
+                          href={member.links[1]}
+                          className="hover:text-gray-300"
+                        >
+                          <Linkedin className="w-6 h-6" />
+                        </Link>
+                        <Link
+                          href={member.links[2]}
+                          className="hover:text-gray-300"
+                        >
+                          <Twitter className="w-6 h-6" />
+                        </Link>
+                      </div>
                     </div>
                   ))}
+
+                  <div>
+                    <p>Bukunmi</p>
+                    <p>(UI/UX Engineer)</p>
+                    <div className="flex justify-center py-2 space-x-2">
+                      {/* link to my gmail */}
+                      bukunmiogunneye0@gmail.com
+                    </div>
+                  </div>
                 </div>
               </div>
-              <Link
-                href="https://github.com/whispers-project"
-                className="inline-block bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
-              >
-                View on GitHub
-              </Link>
+              <div>
+                <div className="mb-3 text-lg">View on GitHub</div>
+
+                <Link
+                  href="https://github.com/Enielect/anonymous"
+                  className="inline-block bg-white mr-4 text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
+                >
+                  Frontend
+                </Link>
+                <Link
+                  href="https://github.com/Ukeme-Edet/Whispers-Backend"
+                  className="inline-block bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
+                >
+                  Backend
+                </Link>
+              </div>
             </div>
           </div>
         </section>
