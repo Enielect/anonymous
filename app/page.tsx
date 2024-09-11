@@ -1,11 +1,153 @@
 import Image from "next/image";
-import RenderRegForm from "@/components/RenderRegForm";
+import Link from "next/link";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <main className="h-full">
-      {/*creating an inbox*/}
-      <RenderRegForm />
-    </main>
+    <div className="flex flex-col min-h-screen">
+      <header className="bg-black text-white sticky top-0 z-10">
+        <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
+          <a href="/#hero" className="text-xl font-bold">
+            Whispers
+          </a>
+          <div className="space-x-4">
+            <a href="/#features" className="hover:text-gray-300">
+              Features
+            </a>
+            <a href="/#about" className="hover:text-gray-300">
+              About
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main className="flex-grow">
+        {/* Intro Section */}
+        <section
+          id="hero"
+          className="relative h-screen flex items-center  justify-center text-white"
+        >
+          <Image
+            src="/images/whisper-hero.png"
+            alt="Whispers Cover"
+            layout="fill"
+            objectFit="cover"
+            className="absolute inset-0 blur-sm"
+          />
+          <div className="absolute inset-0 bg-[#151515] opacity-50"></div>
+          <div className="relative z-10 text-center space-y-6">
+            <h1 className="text-6xl font-bold">Whispers</h1>
+            <p className="text-2xl">
+              Share your thoughts, anonymously and securely
+            </p>
+            <Link
+              href="/inbox"
+              className="inline-block bg-[#06D440] text-gray-900 px-6 py-3 rounded-full font-semibold hover:scale-105 transition duration-300 "
+            >
+              Start Whispering
+            </Link>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section id="features" className="py-20 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center mb-12">
+              Key Features
+            </h2>
+            <div className="grid md:grid-cols-3 gap-12">
+              {[
+                {
+                  name: "Organized Inbox",
+                  description:
+                    "Easily view messages from your inbox in a clean and organized manner.",
+                  image: "/images/anonymous-message.png",
+                },
+                {
+                  name: "Managing Inboxes",
+                  description:
+                    "You can create as many inboxes as you want, with each of them stramlining to specifics.",
+                  image: "/images/manage-inbox.png",
+                },
+                {
+                  name: "Anonymous Messaging",
+                  description:
+                    "Send messages without revealing your identity. Our platform ensures your privacy.",
+                  image: "/images/send-anonymous.png",
+                },
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-white border-white border rounded-lg shadow-lg overflow-hidden"
+                >
+                  <Image
+                    src={feature.image}
+                    alt={feature.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-[13rem] object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl text-black font-semibold mb-2">
+                      {feature.name}
+                    </h3>
+                    <p className="text-gray-600">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-20 bg-[#151515] text-white">
+          <div className="container mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center mb-12">
+              About Whispers
+            </h2>
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-lg mb-8">
+                Whispers was born out of a desire to create a safe space for
+                people to express themselves freely. In a world where privacy is
+                increasingly scarce, we believe in the power of anonymous
+                communication to foster genuine connections and open dialogues.
+              </p>
+              <div className="mb-8">
+                <h3 className="text-2xl font-semibold mb-4">Our Team</h3>
+                <div className="flex justify-center space-x-6">
+                  {[1, 2, 3].map((member) => (
+                    <div key={member} className="flex space-x-2">
+                      <Link href="#" className="hover:text-gray-300">
+                        <Github className="w-6 h-6" />
+                      </Link>
+                      <Link href="#" className="hover:text-gray-300">
+                        <Linkedin className="w-6 h-6" />
+                      </Link>
+                      <Link href="#" className="hover:text-gray-300">
+                        <Twitter className="w-6 h-6" />
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Link
+                href="https://github.com/whispers-project"
+                className="inline-block bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
+              >
+                View on GitHub
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-black text-white py-6">
+        <div className="container mx-auto px-6 text-center">
+          <p>
+            &copy; {new Date().getFullYear()} Whispers. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
   );
 }
