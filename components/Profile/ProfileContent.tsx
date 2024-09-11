@@ -19,6 +19,10 @@ type ProfileContentProps = {
 const ProfileContent = ({ username, email }: ProfileContentProps) => {
   const [editModal, setEditModal] = useState(false);
 
+  const handleClose = () => {
+    setEditModal(false);
+  };
+
   const [editProfileState, setEditProfileState] = useState<
     "choose" | "password" | "username/email"
   >("choose");
@@ -35,8 +39,8 @@ const ProfileContent = ({ username, email }: ProfileContentProps) => {
           {editProfileState === "choose" && (
             <UpdateChoice setEditProfileState={setEditProfileState} />
           )}
-          {editProfileState === "username/email" && <EditUserEmailForm />}
-          {editProfileState === "password" && <PasswordResetForm />}
+          {editProfileState === "username/email" && <EditUserEmailForm close={handleClose} />}
+          {editProfileState === "password" && <PasswordResetForm close={handleClose} />}
         </>
       </Modal>
       <div className="h-full">
@@ -74,7 +78,7 @@ function ProfileHeader({ setEditModal }: ProfileHeaderProp) {
         <div className="flex gap-[90px]">
           <div className="space-x-5">
             <button
-              onClick={() => setEditModal(true)}
+              onClick={() => setDeleteUser(true)}
               className="bg-red-500 p-[8px_16px] text-white rounded-[4px]"
             >
               Delete Accout
@@ -87,7 +91,7 @@ function ProfileHeader({ setEditModal }: ProfileHeaderProp) {
             </button>
           </div>
           <button
-            onClick={() => setEditModal(true)}
+            onClick={() => setLogOut(true)}
             className="bg-[#151515] border border-[#06D440] p-[8px_16px] text-white rounded-[4px]"
           >
             Log Out
@@ -189,7 +193,7 @@ function LogOutModal({ onClose }: LogOutProp) {
             className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
             onClick={handleLogOut}
           >
-            {pending ? "loggin out.." : "Yes"}
+            {pending ? "logging out.." : "Yes"}
           </button>
         </div>
         <button className={`p-[5px]  rounded-md flex-grow`} onClick={onClose}>

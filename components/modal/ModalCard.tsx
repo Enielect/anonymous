@@ -32,20 +32,24 @@ export const InboxModalCard = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
+type DeleteCardProps = {
+  onClose: () => void;
+  children: ReactNode;
+  inboxName: string;
+};
+
 export const DeleteModalCard = ({
   onClose,
   children,
-}: {
-  onClose: () => void;
-  children: ReactNode;
-}) => {
+  inboxName,
+}: DeleteCardProps) => {
   return (
     <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
       <div className="font-medium text-[12px] my-2">
         You are about to delete
       </div>
       <div className="bg-[#FEFEFE0D] p-[6px_12px] rounded-md border border-[#FEFEFE0D]">
-        Inbox Link
+        {inboxName}
       </div>
       <div className="flex justify-between w-full mt-3">
         {/* submit button to perform delete action */}

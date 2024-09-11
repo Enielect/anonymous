@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import Modal from "../Modal";
 import { DeleteModalCard } from "../modal/ModalCard";
-import { convertTimeFormat, getTimeAgo } from "@/lib/utils";
+import { getTimeAgo, web_url } from "@/lib/utils";
+import { deleteInbox } from "@/app/actions/inbox";
 
 type Message = {
   body: string;
@@ -15,63 +16,30 @@ type Message = {
 type InboxMessageProp = {
   inboxMessages: Message[];
   inboxName: string;
+  inbox_id: string;
 };
 
-// const MessageData: Message[] = [
-//   {
-//     id: 1,
-//     content:
-//       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis voluptate corporis, iusto, molestias at obcaecati cumque rem quaerat expedita voluptatem fuga nemo dignissimos dicta labore aut incidunt culp",
-//     time: "12:00",
-//   },
-//   {
-//     id: 2,
-//     content:
-//       "Lorem ipsum, dolor sit amet consecteo, molestias at obcaecati cumque rem quaerat expedita voluptatem fuga nemo dignissimos dicta labore aut incidunt culp",
-//     time: "12:00",
-//   },
-//   {
-//     id: 3,
-//     content:
-//       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis voluptate corporivoluptatem fuga nemo dignissimos dicta labore aut incidunt culp",
-//     time: "12:00",
-//   },
-//   {
-//     id: 4,
-//     content:
-//       "e corporis, iusto, molestias at obcaecati cumque rem quaerat expedita voluptatem fuga nemo dignissimos dicta labore aut incidunt culp",
-//     time: "12:00",
-//   },
-//   {
-//     id: 5,
-//     content:
-//       "Lorem ipsum, dolor sit ambis voluptate corporis, iusto, molestias at obcaecati cumque rem quaerat expedita voluptatem fuga nemo dignissimos dicta labore aut incidunt culp",
-//     time: "12:00",
-//   },
-//   {
-//     id: 6,
-//     content:
-//       "Lorem ipsum, dolor elit. Nobis voluptate corporis, iusto, molestias at obcaecati cumque rem quaerat expedita voluptatem fuga nemo dignissimos dicta labore aut incidunt culp",
-//     time: "12:00",
-//   },
-// ];
-
-const InboxMessages = ({ inboxMessages, inboxName }: InboxMessageProp) => {
+const InboxMessages = ({
+  inboxMessages,
+  inboxName,
+  inbox_id,
+}: InboxMessageProp) => {
   console.log(inboxMessages, "inboxMessages");
+
   return (
     <div>
-      <TopNav name={inboxName} />
+      <TopNav inboxName={inboxName} inbox_id={inbox_id} name={inboxName} />
       <div className="space-y-3 px-5 py-5 pt-[80px]">
         {inboxMessages.map(({ body, id, created_at }) => (
           <div
             key={id}
-            className="flex justify-between gap-[50px] px-5  py-3 border-l border-[#06D440] text-sm text-[#FEFEFEB2]"
+            className="flex justify-between gap-[50px] px-5 pr-0 py-3 border-l border-[#06D440] text-sm text-[#FEFEFEB2]"
           >
             <div>
               <span>{body}</span>
             </div>
-            <div>
-              <span>{getTimeAgo(created_at) || 0}</span>
+            <div className=" flex-nowrap min-w-[120px]">
+              {getTimeAgo(created_at) || 0}
             </div>
           </div>
         ))}
@@ -80,19 +48,32 @@ const InboxMessages = ({ inboxMessages, inboxName }: InboxMessageProp) => {
   );
 };
 
-function TopNav({ name }: { name: string }) {
+type TopNavProp = {
+  name: string;
+  inboxName: string;
+  inbox_id: string;
+};
+
+function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
   const [isDelete, setIsDelete] = useState(false);
   const [pending, startTransition] = useTransition();
-  function handleDelete() {}
+  const router = useRouter();
+
+  function handleDelete() {
+    startTransition(async () => {
+      await deleteInbox(inbox_id);
+      router.refresh();
+    });
+  }
   return (
     <>
       <Modal isOpen={isDelete} onClose={() => setIsDelete(false)}>
-        <DeleteModalCard onClose={() => setIsDelete(false)}>
+        <DeleteModalCard inboxName={name} onClose={() => setIsDelete(false)}>
           <button
             className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
             onClick={handleDelete}
           >
-            {pending ? "Deleting" : "Confirm"}
+            {pending ? "Deleting..." : "Confirm"}
           </button>
         </DeleteModalCard>
       </Modal>
@@ -102,9 +83,10 @@ function TopNav({ name }: { name: string }) {
           <span>{name}</span>
         </div>
         <div className="space-x-3">
-          <button className="bg-[#FEFEFE0D] border border-[#06D440] inbox-button">
-            Share Link
-          </button>
+          <>
+            <CopyButton inbox_id={inbox_id} />
+            <ShareButton inbox_id={inbox_id} inboxName={inboxName} />
+          </>
           <button
             className="bg-[#06D440] inbox-button"
             onClick={() => setIsDelete(true)}
@@ -114,6 +96,66 @@ function TopNav({ name }: { name: string }) {
         </div>
       </div>
     </>
+  );
+}
+
+function CopyButton({ inbox_id }: { inbox_id: string }) {
+  const [clicked, setIsClicked] = useState(false);
+
+  const handleCopyLink = () => {
+    const textToCopy = `${web_url}/writeMessage/${inbox_id}`;
+
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setIsClicked(true);
+        console.log("Text copied to clipboard!");
+
+        // Reset the `isClicked` state after 3 seconds
+        setTimeout(() => {
+          setIsClicked(false);
+        }, 3000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
+  return (
+    <button
+      onClick={handleCopyLink}
+      className="bg-[#FEFEFE0D] hidden md:inline-block border border-[#06D440] inbox-button"
+    >
+      {clicked ? "Copied" : "Copy Link"}
+    </button>
+  );
+}
+
+type ShareButtonProp = { inboxName: string; inbox_id: string };
+
+function ShareButton({ inboxName, inbox_id }: ShareButtonProp) {
+  const shareData = {
+    title: `${inboxName} Inbox`,
+    text: "Share a Link to this inbox",
+    url: `${web_url}/writeMessage/${inbox_id}`,
+  };
+
+  async function handleShare() {
+    try {
+      await navigator.share(shareData);
+      console.log("Shared successfully");
+    } catch (err) {
+      // resultPara.textContent = `Error: ${err}`;
+      console.error(err);
+    }
+  }
+
+  return (
+    <button
+      onClick={handleShare}
+      className="bg-[#FEFEFE0D] inline-block md:hidden border border-[#06D440] inbox-button"
+    >
+      Share
+    </button>
   );
 }
 
