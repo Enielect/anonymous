@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import Modal from "../Modal";
 import RegisterForm, { ActionButton, Input } from "../RegisterForm";
 import { DeleteModalCard } from "../modal/ModalCard";
 import { deleteInbox } from "@/app/actions/inbox";
 import { useRouter } from "next/navigation";
+import {  getTimeAgo, web_url } from "@/lib/utils";
+import { useFormState, useFormStatus } from "react-dom";
+import { editInboxName } from "@/app/(user)/inbox/action/inbox";
 
 interface InboxItemProp {
   inbox_name: string;
@@ -26,26 +29,80 @@ const InboxItem: React.FC<InboxItemProp> = ({
   const [pending, startTransition] = useTransition();
   const router = useRouter();
 
-  function handleDelete() {
+  const [isClicked, setIsClicked] = useState(false);
+  // function handleClose() {
+  //   setIsEdit(false);
+  //   setIsDelete(false);
+  // }
+  const [state, action] = useFormState(
+    editInboxName.bind(null, inbox_id),
+    undefined
+  );
+
+  useEffect(() => {
+    if (state?.message === "success") {
+      setIsEdit(false);
+    }
+  }, [state]);
+
+  console.log(pending, "this is the pending state, where are youuuuuuuuuuu");
+
+  const handleCopyLink = () => {
+    const textToCopy = `${web_url}/writeMessage/${inbox_id}`;
+
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setIsClicked(true);
+        console.log("Text copied to clipboard!");
+
+        // Reset the `isClicked` state after 3 seconds
+        setTimeout(() => {
+          setIsClicked(false);
+        }, 3000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
+
+  const handleDelete = () => {
     startTransition(async () => {
       await deleteInbox(inbox_id);
       router.refresh();
     });
-  }
+  };
+
   return (
     <>
       <Modal isOpen={isEdit} onClose={() => setIsEdit(false)}>
-        <RegisterForm
-          title="Edit"
-          firstField={<Input label="Edit Inbox Name" formName="inboxName" />}
-          secondField={<Input label="copy Inbox Link" formName="inboxLink" />}
-          remark="inbox information"
-          actionButton={<ActionButton buttonText="Edit" />}
-        />
+        <form action={action}>
+          <RegisterForm
+            title="Edit"
+            firstField={
+              <>
+                <Input label="Edit Inbox Name" formName="name" />
+                <div className="bg-[#FEFEFE0D] border flex py-2  px-3 rounded-md w-full border-[#FEFEFE33]">
+                  <span className="text-to-copy w-[80%] text-blue-400 break-all block flex-wrap">
+                    {`${web_url}/writeMessage/${inbox_id}`}
+                  </span>
+                  <button
+                    onClick={handleCopyLink} // Call the copy function directly
+                    className="copy-button w-[20%] flex justify-center items-center"
+                  >
+                    {isClicked ? <CheckIcon /> : <ClipIcon />}
+                  </button>
+                </div>
+              </>
+            }
+            remark="inbox information"
+            actionButton={<EditInbxNameButton />}
+          />
+        </form>
       </Modal>
 
       <Modal isOpen={isDelete} onClose={() => setIsDelete(false)}>
-        <DeleteModalCard onClose={() => setIsDelete(false)}>
+        <DeleteModalCard inboxName={inbox_name} onClose={() => setIsDelete(false)}>
           <button
             className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
             onClick={handleDelete}
@@ -60,7 +117,7 @@ const InboxItem: React.FC<InboxItemProp> = ({
         <Link href={`/inbox/${inbox_id}`} className="text-[#06D440]">
           {Number(messages)} Messages
         </Link>
-        <span>{date}</span>
+        <span>{getTimeAgo(date)}</span>
         <div className="flex justify-end items-center">
           <button onClick={() => setIsEdit(true)}>
             <svg
@@ -98,5 +155,39 @@ const InboxItem: React.FC<InboxItemProp> = ({
     </>
   );
 };
+
+function ClipIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      style={{ fill: "white" }}
+    >
+      <path d="M19 3h-2.25a1 1 0 0 0-1-1h-7.5a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 17H5V5h2v2h10V5h2v15z"></path>
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      style={{ fill: "white" }}
+    >
+      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+    </svg>
+  );
+}
+
+function EditInbxNameButton() {
+  const { pending: editPending } = useFormStatus();
+
+  return <ActionButton buttonText={editPending ? "Editing..." : "Edit"} />;
+}
 
 export default InboxItem;
