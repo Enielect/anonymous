@@ -24,7 +24,7 @@ const RegisterForm: FC<FormType> = ({
           <span className="capitalize text-lg sm:text-3xl font-bold block mb-2 text-[#FEFEFE]">
             {title}
           </span>
-          <span className="block text-xs sm:textsm text-[#FEFEFEB2]">{remark}</span>
+          <span className="block text-xs sm:text-sm text-[#FEFEFEB2]">{remark}</span>
         </div>
         <div className="space-y-5 w-[300px]">
           {firstField}

@@ -75,7 +75,7 @@ function ProfileHeader({ setEditModal }: ProfileHeaderProp) {
       <div className="flex justify-between items-center">
         <div className="font-bold text-lg sm:text-2xl">
           Profile{" "}
-          <span className="text-xs block font-light mt-2  text-[#FEFEFEB2]">
+          <span className="text-xs md:text-base block font-light mt-2  text-[#FEFEFEB2]">
             Keep tabs on your messages and inboxes
           </span>
         </div>
@@ -184,7 +184,7 @@ function DeleteUserModal({ onClose }: DeleteUserModalProp) {
   }
   return (
     <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
-      <div className="font-medium text-[12px] my-2">
+      <div className="font-medium text-[12px] md:text-base my-2">
         Are you sure you want to delete your accout, this action is
         irreversable!!!
       </div>
@@ -221,7 +221,7 @@ function LogOutModal({ onClose }: LogOutProp) {
   }
   return (
     <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
-      <div className="font-medium text-[12px] my-2">
+      <div className="font-medium text-[12px] md:text-base my-2">
         Are you sure you want to Log Out????
       </div>
       <div className="flex justify-between w-full mt-3">
