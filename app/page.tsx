@@ -44,7 +44,7 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-[#151515] opacity-50"></div>
           <div className="relative z-10 text-center space-y-6">
             <h1 className="text-6xl font-bold">Whispers</h1>
-            <p className="text-2xl">
+            <p className="text-2xl px-2">
               Share your thoughts, anonymously and securely
             </p>
             <Link
@@ -121,7 +121,7 @@ export default function LandingPage() {
               </p>
               <div className="mb-8">
                 <h3 className="text-2xl font-semibold mb-4 py-2">Our Team</h3>
-                <div className="flex justify-center space-x-6">
+                <div className="flex flex-col gap-6 sm:gap-0 sm:flex-row justify-center space-x-6">
                   {[
                     {
                       name: "Ukeme",
