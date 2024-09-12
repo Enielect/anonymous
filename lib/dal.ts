@@ -25,7 +25,7 @@ export const getUser = cache(async (formData: FormData) => {
     });
 
     const response = await user.json();
-    if (user.status === 400) return response;
+    // if (user.status === 400) return response;
 
     // if (!response.ok) throw new Error("Failed to fetch user");
 

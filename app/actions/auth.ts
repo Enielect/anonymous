@@ -17,7 +17,7 @@ export async function loginAction(prev: any, formData: FormData) {
 
   try {
     const responseMessage = await getUser(formData);
-    if (responseMessage.message) return { message: ["Invalid credentials"] };
+    // if (responseMessage.message) return { message: ["Invalid credentials"] };
   } catch (e) {
     // throw new Error("Invalid credentials");
     console.log(e);
