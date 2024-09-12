@@ -19,10 +19,10 @@ const InboxHeader = () => {
         <RenderRegForm onSuccess={handleCloseModal} />
       </Modal>
       <div className="flex min-[709px]:w-full relative justify-between items-center">
-        <div className="font-bold text-2xl">Inbox</div>
+        <div className="font-bold md:text-2xl">Inbox</div>
         <button
           onClick={() => setIsCreateInbox(true)}
-          className="bg-[#06D440] p-[8px_16px] rounded-[4px]"
+          className="bg-[#06D440] text-sm md:text-base p-[6px_13px] sm:p-[8px_16px] rounded-[4px]"
         >
           Create new Inbox
         </button>
