@@ -15,7 +15,7 @@ type UpdateChoiceProp = {
 
 export function UpdateChoice({ setEditProfileState }: UpdateChoiceProp) {
   return (
-    <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
+    <div className="md:p-[15px_20px] p-[10px_15px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[max(50%, 300px)] md:w-[max(50%,500px)]">
       <div className="font-medium text-[12px] my-2">
         What do you want to Edit?
       </div>
@@ -23,14 +23,14 @@ export function UpdateChoice({ setEditProfileState }: UpdateChoiceProp) {
         {/* submit button to perform delete action */}
         <div className="flex-grow">
           <button
-            className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
+            className="p-[5px] bg-[#06D440] text-sm sm:text-base w-full rounded-md flex-grow"
             onClick={() => setEditProfileState("username/email")}
           >
             Email/Username
           </button>
         </div>
         <button
-          className={`p-[5px]  rounded-md flex-grow`}
+          className={`p-[5px] px-[7px] text-sm sm:text-base rounded-md flex-grow`}
           onClick={() => setEditProfileState("password")}
         >
           Password

@@ -73,7 +73,7 @@ function ProfileHeader({ setEditModal }: ProfileHeaderProp) {
         <LogOutModal onClose={() => setLogOut(false)} />
       </Modal>
       <div className="flex justify-between items-center">
-        <div className="font-bold text-2xl">
+        <div className="font-bold text-lg sm:text-2xl">
           Profile{" "}
           <span className="text-xs block font-light mt-2  text-[#FEFEFEB2]">
             Keep tabs on your messages and inboxes
@@ -122,14 +122,14 @@ function ProfileBody({ username, email }: ProfileBodyProp) {
       <Modal isOpen={isLogOut} onClose={() => setLogOut(false)}>
         <LogOutModal onClose={() => setLogOut(false)} />
       </Modal>
-      <div className="flex flex-col justify-between pb-[30px] h-[calc(100%-3.5rem)]">
+      <div className="flex flex-col justify-between pb-[30px] h-[calc(100%-3.8rem)]">
         <div className="flex mt-10 items-center bg-[#FEFEFE08] p-[18px_16px] rounded-xl gap-6">
           <div className="flex justify-center bg-[#06D440] w-[50px] h-[50px] rounded-full items-center">
             <ProfileIcon />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">{username}</h1>
-            <span className="text-sm text-[#FEFEFEB2]">{email}</span>
+            <h1 className="sm:text-2xl text-base font-bold">{username}</h1>
+            <span className="sm:text-sm text-xs text-[#FEFEFEB2]">{email}</span>
           </div>
         </div>
         <div className="space-x-6">

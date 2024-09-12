@@ -80,7 +80,7 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
       <div className="flex fixed w-full justify-between px-5 py-3 pr-[70px] bg-[#080808]">
         <div className="flex items-center gap-3">
           <BackButton />
-          <span>{name}</span>
+          <span className="text-sm sm:text-base">{name}</span>
         </div>
         <div className="space-x-3">
           <>
@@ -152,7 +152,7 @@ function ShareButton({ inboxName, inbox_id }: ShareButtonProp) {
   return (
     <button
       onClick={handleShare}
-      className="bg-[#FEFEFE0D] inline-block md:hidden border border-[#06D440] inbox-button"
+      className="bg-[#FEFEFE0D] inline-block md:hidden mr-3 border border-[#06D440] inbox-button"
     >
       Share
     </button>
@@ -168,6 +168,7 @@ function BackButton() {
         height="16"
         viewBox="0 0 16 16"
         fill="none"
+        className="max-[500px]:w-4"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

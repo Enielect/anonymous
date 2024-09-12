@@ -18,13 +18,13 @@ const RegisterForm: FC<FormType> = ({
   actionButton,
 }) => {
   return (
-    <div className="absolute top-1/2  left-1/2 -translate-y-1/2 px-6 -translate-x-1/2">
-      <div className="max-w-[800px] gap-10 bg-[#151515] items-center py-10 min-h-[280px] rounded-xl  flex justify-between px-7">
+    <div className="absolute top-1/2 left-1/2 sm:left-1/2 -translate-y-1/2 px-6 -translate-x-1/2">
+      <div className="md:max-w-[50rem] max-w-[350px] gap-10 bg-[#151515] items-center py-4 sm:py-10 min-h-[280px] rounded-xl  flex justify-between px-7">
         <div className="w-[200px]">
-          <span className="capitalize text-3xl font-bold block mb-2 text-[#FEFEFE]">
+          <span className="capitalize text-lg sm:text-3xl font-bold block mb-2 text-[#FEFEFE]">
             {title}
           </span>
-          <span className="block text-sm  text-[#FEFEFEB2]">{remark}</span>
+          <span className="block text-xs sm:textsm text-[#FEFEFEB2]">{remark}</span>
         </div>
         <div className="space-y-5 w-[300px]">
           {firstField}
@@ -46,7 +46,7 @@ type InputProps = {
 export function Input({ label, formName }: InputProps) {
   return (
     <div>
-      <label htmlFor="dmail" className="block mb-2 text-[#FEFEFEB2]">
+      <label htmlFor="dmail" className="block mb-2 text-sm sm:text-base text-[#FEFEFEB2]">
         {/* Enter Email */}
         {label}
       </label>
@@ -63,7 +63,7 @@ export function Input({ label, formName }: InputProps) {
 
 export function ActionButton({ buttonText }: { buttonText: string }) {
   return (
-    <button type="submit" className="bg-[#06D440] block w-full py-2 rounded-md">
+    <button type="submit" className="bg-[#06D440] text-sm sm:text-base block w-full py-2 rounded-md">
       {buttonText}
     </button>
   );
