@@ -72,14 +72,14 @@ function ProfileHeader({ setEditModal }: ProfileHeaderProp) {
       <Modal isOpen={isLogOut} onClose={() => setLogOut(false)}>
         <LogOutModal onClose={() => setLogOut(false)} />
       </Modal>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between min-[845px]:items-center items-start">
         <div className="font-bold text-lg sm:text-2xl">
           Profile{" "}
           <span className="text-xs md:text-base block font-light mt-2  text-[#FEFEFEB2]">
             Keep tabs on your messages and inboxes
           </span>
         </div>
-        <div className="flex gap-[90px]">
+        <div className="flex  gap-[90px]">
           <div className="space-x-5">
             <button
               onClick={() => setDeleteUser(true)}
@@ -89,7 +89,7 @@ function ProfileHeader({ setEditModal }: ProfileHeaderProp) {
             </button>
             <button
               onClick={() => setEditModal(true)}
-              className="bg-[#06D440] p-[8px_16px] text-xs sm:text-base text-white rounded-[4px]"
+              className="bg-[#06D440] p-[4px_10px] sm:p-[8px_16px] text-xs sm:text-base text-white rounded-[4px]"
             >
               Edit Profile
             </button>
@@ -123,28 +123,34 @@ function ProfileBody({ username, email }: ProfileBodyProp) {
         <LogOutModal onClose={() => setLogOut(false)} />
       </Modal>
       <div className="flex flex-col justify-between pb-[30px] h-[calc(100%-3.8rem)]">
-        <div className="flex mt-10 items-center bg-[#FEFEFE08] p-[18px_16px] rounded-xl gap-6">
-          <div className="flex justify-center bg-[#06D440] w-[50px] h-[50px] rounded-full items-center">
+        <div className="flex max-[329px]:flex-col mt-10 items-center bg-[#FEFEFE08] p-[18px_16px] rounded-xl gap-6">
+          <div className="flex justify-center bg-[#06D440] max-[329px]:w-[30px] max-[329px]:h-[30px] max-[329px]:p-2 w-[50px] h-[50px] rounded-full items-center">
             <ProfileIcon />
           </div>
           <div>
-            <h1 className="sm:text-2xl text-base font-bold">{username}</h1>
-            <span className="sm:text-sm text-xs text-[#FEFEFEB2]">{email}</span>
+            <h1 className="sm:text-2xl break-all text-base font-bold">
+              {username}
+            </h1>
+            <span className="sm:text-sm break-all max-[329px]:hidden text-xs text-[#FEFEFEB2]">
+              {email}
+            </span>
           </div>
+          <span className="sm:text-sm break-all min-[329px]:hidden inline-block text-xs text-[#FEFEFEB2]">
+            {email}
+          </span>
         </div>
-        <div className="space-x-6">
-          <button
-            onClick={() => setDeleteUser(true)}
-            className="bg-red-600 p-[6px_14px] text-sm inline-block min-[845px]:hidden text-white rounded-[4px]"
-          >
-            Delete Account
-          </button>
-
+        <div className="min-[365px]:space-x-6 max-[340px]:space-y-3 max-[340px]:text-right space-x-1">
           <button
             onClick={() => setLogOut(true)}
-            className="bg-[#151515] border text-sm inline-block min-[845px]:hidden border-[#06D440] p-[6px_14px] text-white rounded-[4px]"
+            className="bg-[#151515] border text-sm max-[340px]:text-xs inline-block min-[845px]:hidden border-[#06D440] p-[6px_14px] text-white rounded-[4px]"
           >
             Log Out
+          </button>
+          <button
+            onClick={() => setDeleteUser(true)}
+            className="bg-red-600 p-[6px_14px] text-sm max-[340px]:text-xs inline-block min-[845px]:hidden text-white rounded-[4px]"
+          >
+            Delete Account
           </button>
         </div>
       </div>
@@ -183,7 +189,7 @@ function DeleteUserModal({ onClose }: DeleteUserModalProp) {
     router.refresh();
   }
   return (
-    <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
+    <div className="p-[15px_20px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
       <div className="font-medium text-[12px] md:text-base my-2">
         Are you sure you want to delete your accout, this action is
         irreversable!!!
@@ -220,7 +226,7 @@ function LogOutModal({ onClose }: LogOutProp) {
     router.refresh();
   }
   return (
-    <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
+    <div className="p-[15px_20px] bg-[#FEFEFE0D] rounded-lg md:w-[min(50vw,500px)] w-[min(50vw,400px)]">
       <div className="font-medium text-[12px] md:text-base my-2">
         Are you sure you want to Log Out????
       </div>

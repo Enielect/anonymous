@@ -47,7 +47,8 @@ const InboxItem: React.FC<InboxItemProp> = ({
 
   console.log(pending, "this is the pending state, where are youuuuuuuuuuu");
 
-  const handleCopyLink = () => {
+  const handleCopyLink = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const textToCopy = `${web_url}/writeMessage/${inbox_id}`;
 
     navigator.clipboard

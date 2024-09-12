@@ -54,8 +54,8 @@ export function EditUserEmailForm({ close }: EditProp) {
 
   return (
     <form action={action}>
-      <div className="absolute top-1/2  left-1/2 -translate-y-1/2 px-6 -translate-x-1/2">
-        <div className="max-w-[800px] gap-10 bg-[#FEFEFE08] items-center py-10 min-h-[280px] rounded-xl  flex justify-between px-7">
+      <div className="absolute top-1/2 left-1/2 -translate-y-1/2 px-6 -translate-x-1/2">
+        <div className="md:max-w-[50rem] max-w-[350px] gap-10 bg-[#151515] items-center py-3 md:py-10 min-h-[280px] rounded-xl  flex justify-between px-7">
           <div className="w-[200px]">
             <span className="capitalize text-3xl font-bold block mb-2 text-[#FEFEFE]">
               Edit
