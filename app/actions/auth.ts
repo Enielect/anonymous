@@ -17,11 +17,10 @@ export async function loginAction(prev: any, formData: FormData) {
 
   try {
     const responseMessage = await getUser(formData);
-    // if (responseMessage.message) return { message: ["Invalid credentials"] };
+    console.log(responseMessage, "response from login");
+    if (responseMessage?.message) return { message: ["Invalid credentials"] };
   } catch (e) {
-    // throw new Error("Invalid credentials");
-    console.log(e);
-    return { message: ["Invalid credentials"] };
+    return { message: ["Network Error"] };
   }
   redirect("/inbox");
 }
