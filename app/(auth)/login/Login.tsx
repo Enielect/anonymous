@@ -14,25 +14,25 @@ const Login = () => {
       action={action}
       className="absolute top-1/2  left-1/2 -translate-y-1/2 px-6 -translate-x-1/2"
     >
-      <div className="max-w-[800px] gap-10 bg-[#FEFEFE08] items-center py-10 min-h-[280px] rounded-xl  flex justify-between px-7">
+      <div className="md:max-w-[50rem] max-w-[350px] gap-10 bg-[#FEFEFE08] items-center py-4 sm:py-10 min-h-[280px] rounded-xl  flex justify-between px-7">
         <div className="w-[200px]">
-          <span className="capitalize text-3xl font-bold block mb-2 text-[#FEFEFE]">
+          <span className="capitalize text-2xl sm:text-3xl font-bold block mb-2 text-[#FEFEFE]">
             Log In
           </span>
-          <span className="block text-sm  text-[#FEFEFEB2]">
+          <span className="block sm:text-sm text-xs  text-[#FEFEFEB2]">
             Log in to your account
           </span>
         </div>
         <div className="space-y-5 w-[300px]">
           <div>
-            <label htmlFor="dmail" className="block mb-2 text-[#FEFEFEB2]">
+            <label htmlFor="email" className="block mb-2 text-xs sm:text-base text-[#FEFEFEB2]">
               Enter Email
             </label>
             <input
               type="email"
               name="email"
               id="email"
-              className="bg-[#FEFEFE0D] border px-3 rounded-md w-full border-[#FEFEFE33] h-10 focus:outline-none"
+              className="bg-[#FEFEFE0D] border px-3 rounded-md w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
               required
             />
             {state?.errors?.email && (
@@ -40,14 +40,14 @@ const Login = () => {
             )}
           </div>
           <div>
-            <label htmlFor="password" className="block mb-2 text-[#FEFEFEB2]">
+            <label htmlFor="password" className="block mb-2 text-xs sm:text-base text-[#FEFEFEB2]">
               Enter Password
             </label>
             <input
               type="password"
               id="password"
               name="password"
-              className="bg-[#FEFEFE0D] px-3 rounded-md border w-full border-[#FEFEFE33] h-10 focus:outline-none"
+              className="bg-[#FEFEFE0D] px-3 rounded-md border w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
               required
             />
             {state?.errors?.password && (
@@ -66,7 +66,7 @@ const Login = () => {
           </div>
           <LoginButton />
 
-          <span className="block">
+          <span className="block text-xs sm:text-base">
             Already have an account?{" "}
             <Link href="/create" className="text-[#06D440] cursor-pointer ml-1">
               Sign up
@@ -85,7 +85,7 @@ function LoginButton() {
     <button
       disabled={pending}
       type="submit"
-      className="bg-[#06D440] block w-full py-2 rounded-md"
+      className="bg-[#06D440] text-sm sm:text-base py-1 block w-full sm:py-2 rounded-md"
     >
       {pending ? "Processing..." : "Log In"}
     </button>
