@@ -135,14 +135,14 @@ function ProfileBody({ username, email }: ProfileBodyProp) {
         <div className="space-x-6">
           <button
             onClick={() => setDeleteUser(true)}
-            className="bg-red-600 p-[8px_16px] inline-block min-[845px]:hidden text-white rounded-[4px]"
+            className="bg-red-600 p-[6px_14px] text-sm inline-block min-[845px]:hidden text-white rounded-[4px]"
           >
-            Delete Accout
+            Delete Account
           </button>
 
           <button
             onClick={() => setLogOut(true)}
-            className="bg-[#151515] border inline-block min-[845px]:hidden border-[#06D440] p-[8px_16px] text-white rounded-[4px]"
+            className="bg-[#151515] border text-sm inline-block min-[845px]:hidden border-[#06D440] p-[6px_14px] text-white rounded-[4px]"
           >
             Log Out
           </button>
