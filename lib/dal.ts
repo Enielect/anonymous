@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import { base_url } from "./utils";
 
 export const verifySession = cache(async () => {
-  const cookie = cookies().get("session")?.value; 
+  const cookie = cookies().get("session")?.value;
   const session = await decrypt(cookie);
 
   if (!session?.userId) redirect("/login");
@@ -23,7 +23,9 @@ export const getUser = cache(async (formData: FormData) => {
       method: "POST",
       body: formData,
     });
+
     const response = await user.json();
+    if (user.status === 400) return response;
 
     // if (!response.ok) throw new Error("Failed to fetch user");
 
