@@ -22,22 +22,22 @@ async function getAllInboxes() {
 async function InboxHome() {
   const allInboxes = await getAllInboxes();
   return (
-    <div className="h-full">
-      <div className="fixed w-full px-6 pr-[5.3rem] py-4 bg-[#151515]">
+    <div className="h-full relative">
+      <div className="fixed w-full h-[7.5rem] z-10 px-6 pr-[5.3rem] py-4 bg-[#151515]">
         <InboxHeader />
         {allInboxes.length > 0 && <InboxListHeader />}
       </div>
       {allInboxes.length > 0 && (
-        <section className="w-full  pt-[110px]  h-full">
-          <div className=" flex h-full items-center">
-            <div className="w-full h-full">
+        <section className=" overflow-x-hidden right-0 left-0 absolute min-h-[calc(100dvh-11.5rem)] top-[7.5rem]">
+          <div className=" flex h-full">
+            <div className="w-full">
               <InboxList allInboxes={allInboxes} />
             </div>
           </div>
         </section>
       )}
       {allInboxes.length === 0 && (
-        <div className="flex justify-center items-center min-h-[calc(100vh-69px)]">
+        <div className="flex justify-center items-center min-h-[calc(100vh-4.3rem)]">
           <NoInbox />
         </div>
       )}
@@ -49,11 +49,13 @@ export default InboxHome;
 
 function InboxListHeader() {
   return (
-    <div className="grid bg-[#151515] grid-cols-4 py-[12px] px-[20px] w-full justify-between">
-      <div>Inbox name</div>
-      <div>Total messages</div>
-      <div>Date Created</div>
-      <div></div>
+    <div className=" bg-[#151515]  py-[12px] px-[20px] w-full flex justify-between">
+      <div className="grid flex-[8] min-[709px]:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1">
+        <div>Inbox name</div>
+        <div className="hidden min-[500px]:block">Total messages</div>
+        <div className="min-[709px]:block hidden">Date Created</div>
+      </div>
+      <div className=" flex-1 h-[5px]"></div>
     </div>
   );
 }

@@ -44,7 +44,7 @@ export const DeleteModalCard = ({
   inboxName,
 }: DeleteCardProps) => {
   return (
-    <div className="p-[15px_20px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[min(50vw,400px)]">
+    <div className="p-[15px_20px] max-w-[500px] bg-[#151515] rounded-lg w-[min(50vw,400px)]">
       <div className="font-medium text-[12px] my-2">
         You are about to delete
       </div>

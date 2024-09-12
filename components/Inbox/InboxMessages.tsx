@@ -38,7 +38,7 @@ const InboxMessages = ({
             <div>
               <span>{body}</span>
             </div>
-            <div className=" flex-nowrap min-w-[120px]">
+            <div className=" flex-nowrap min-w-[70px] min:[580px]:min-w-[120px]">
               {getTimeAgo(created_at) || 0}
             </div>
           </div>
@@ -88,7 +88,7 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
             <ShareButton inbox_id={inbox_id} inboxName={inboxName} />
           </>
           <button
-            className="bg-[#06D440] inbox-button"
+            className="bg-[#06D440] hidden min-[450px]:inline-block inbox-button"
             onClick={() => setIsDelete(true)}
           >
             Delete Inbox

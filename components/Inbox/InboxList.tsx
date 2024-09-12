@@ -15,7 +15,7 @@ type InboxListProps = {
 };
 const InboxList = ({ allInboxes }: InboxListProps) => {
   return (
-    <div className="w-full bg-[#151515] h-full px-6 space-y-4">
+    <div className=" bg-[#151515] h-full px-6 py-3 space-y-4">
       {allInboxes.map((inbox) => (
         <InboxItemWrapper
           key={inbox.id}

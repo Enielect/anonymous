@@ -19,7 +19,7 @@ const RenderRegForm = ({ onSuccess }: RenderRegFormProp) => {
           title="Create"
           firstField={
             <>
-              <Input label="Edit Inbox Name" formName="inboxName" />{" "}
+              <Input label="Enter Inbox Name" formName="inboxName" />{" "}
               {state?.errors?.inboxName && <p>{state?.errors.inboxName}</p>}
             </>
           }
