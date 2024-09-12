@@ -23,7 +23,7 @@ async function InboxHome() {
   const allInboxes = await getAllInboxes();
   return (
     <div className="h-full relative">
-      <div className="fixed w-full h-[7.5rem] z-10 px-6 pr-[5.3rem] py-4 bg-[#151515]">
+      <div className="fixed w-full h-[7.5rem] z-10 px-6 min-[500px]:pr-[5.3rem] py-4 bg-[#151515]">
         <InboxHeader />
         {allInboxes.length > 0 && <InboxListHeader />}
       </div>
@@ -50,7 +50,7 @@ export default InboxHome;
 function InboxListHeader() {
   return (
     <div className=" bg-[#151515]  py-[12px] px-[20px] w-full flex justify-between">
-      <div className="grid flex-[8] min-[709px]:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1">
+      <div className="grid flex-[8] min-[709px]:grid-cols-3 items-center min-[500px]:grid-cols-2 grid-cols-1">
         <div className="py-3 sm:py-0">Inbox name</div>
         <div className="hidden min-[500px]:block">Total messages</div>
         <div className="min-[709px]:block hidden">Date Created</div>

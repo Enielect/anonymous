@@ -5,8 +5,8 @@ import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Whisper",
-  description: "Send anonymous messages among friend, foes, and family",
+  title: "Whispers",
+  description: "Send anonymous messages among friends, foes, and family",
 };
 
 export default function RootLayout({

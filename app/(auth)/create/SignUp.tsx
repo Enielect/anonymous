@@ -48,7 +48,7 @@ const SignUp = () => {
               type="email"
               name="email"
               id="email"
-              className="bg-[#FEFEFE0D] border px-3 rounded-md w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
+              className="bg-[#FEFEFE0D] border px-3 rounded-md text-sm sm:text-base w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
               required
             />
             {state?.errors?.email && (
@@ -63,7 +63,7 @@ const SignUp = () => {
               type="password"
               id="password"
               name="password"
-              className="bg-[#FEFEFE0D] px-3 rounded-md border w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
+              className="bg-[#FEFEFE0D] px-3 rounded-md border text-sm sm:text-base w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
               required
             />
             {state?.errors?.password && (

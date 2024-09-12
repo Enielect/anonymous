@@ -8,7 +8,7 @@ const NavButtons = () => {
   const path = usePathname();
   // const [activeButton, setActiveButton] = useState("inbox");
   return (
-    <div className="grid justify-center w-full gap-5 mt-7">
+    <div className="min-[500px]:grid max-[500px]:flex max-[500px]:h-full max-[500px]:pl-7 max-[500px]:items-center max-[500px]:justify-start justify-center w-full gap-5 min-[500px]:mt-7">
       <button
         onClick={() => {
           router.push("/inbox");

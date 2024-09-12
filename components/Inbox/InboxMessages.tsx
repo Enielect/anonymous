@@ -38,7 +38,7 @@ const InboxMessages = ({
             <div>
               <span>{body}</span>
             </div>
-            <div className=" flex-nowrap min-w-[70px] min:[580px]:min-w-[120px]">
+            <div className=" flex-nowrap text-xs sm:text-sm min-w-[70px] min:[580px]:min-w-[120px]">
               {getTimeAgo(created_at) || 0}
             </div>
           </div>
@@ -77,7 +77,7 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
           </button>
         </DeleteModalCard>
       </Modal>
-      <div className="flex fixed w-full justify-between px-5 py-3 pr-[70px] bg-[#080808]">
+      <div className="flex fixed w-full justify-between px-5 py-3 min-[500px]:pr-[70px] bg-[#080808]">
         <div className="flex items-center gap-3">
           <BackButton />
           <span className="text-sm sm:text-base">{name}</span>
@@ -152,7 +152,7 @@ function ShareButton({ inboxName, inbox_id }: ShareButtonProp) {
   return (
     <button
       onClick={handleShare}
-      className="bg-[#FEFEFE0D] inline-block md:hidden mr-3 border border-[#06D440] inbox-button"
+      className="bg-[#FEFEFE0D] inline-block md:hidden border border-[#06D440] inbox-button"
     >
       Share
     </button>

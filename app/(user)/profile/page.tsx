@@ -21,7 +21,7 @@ async function fetchUserData() {
 const Profile = async () => {
   const userData = await fetchUserData();
   return (
-    <div className="h-[100dvh] sm:h-[calc(100dvh-57px)]">
+    <div className="min-[500px]:h-[100dvh] h-[calc(100dvh-4rem)] sm:h-[calc(100dvh-57px)]">
       <ProfileContent username={userData?.username} email={userData?.email} />
     </div>
   );
