@@ -128,7 +128,7 @@ const InboxItem: React.FC<InboxItemProp> = ({
           <span className="min-[709px]:block hidden">{getTimeAgo(date)}</span>
         </Link>
         <div className="flex-1">
-          <div className="flex gap-2 sm:gap-0 justify-end items-center">
+          <div className="flex gap-2  justify-end items-center">
             <button onClick={() => setIsEdit(true)}>
               <svg
                 width="34"

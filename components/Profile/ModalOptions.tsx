@@ -15,15 +15,15 @@ type UpdateChoiceProp = {
 
 export function UpdateChoice({ setEditProfileState }: UpdateChoiceProp) {
   return (
-    <div className="md:p-[15px_20px] p-[10px_15px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[max(50%, 300px)] md:w-[max(50%,500px)]">
-      <div className="font-medium text-[12px] my-2">
+    <div className="md:p-[15px_20px] p-[10px_15px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[max(50%, 300px)] md:w-[min(50vw,500px)]">
+      <div className="font-medium text-[12px] md:text-base my-2">
         What do you want to Edit?
       </div>
       <div className="flex justify-between w-full mt-3">
         {/* submit button to perform delete action */}
         <div className="flex-grow">
           <button
-            className="p-[5px] bg-[#06D440] text-sm sm:text-base w-full rounded-md flex-grow"
+            className="p-[5px] px-[8px] bg-[#06D440] text-sm sm:text-base w-full rounded-md flex-grow"
             onClick={() => setEditProfileState("username/email")}
           >
             Email/Username
