@@ -2,7 +2,7 @@
 
 import { loginAction } from "@/app/actions/auth";
 import Link from "next/link";
-import React, { FC } from "react";
+import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 const Login = () => {

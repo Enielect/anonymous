@@ -25,13 +25,18 @@ export const getUser = cache(async (formData: FormData) => {
 
   const response = await user.json();
 
+  // handle specific case where the user is found
   if (user.status === 200) {
     if (!session?.userId && session) deleteSession();
     await createSession(response.id);
     return;
   }
+
+  // in the case where an invalid credentials was provides I returned a specific messaage
   if (user.status === 400) {
     return { message: response.message, status: user.status };
   }
+
+  // then i threw every other error
   throw new Error("Network Error");
 });

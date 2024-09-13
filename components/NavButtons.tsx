@@ -1,18 +1,16 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";  
+import React from "react";
 
 const NavButtons = () => {
   const router = useRouter();
   const path = usePathname();
-  // const [activeButton, setActiveButton] = useState("inbox");
   return (
     <div className="min-[500px]:grid max-[500px]:flex max-[500px]:h-full max-[500px]:pl-7 max-[500px]:items-center max-[500px]:justify-start justify-center w-full gap-5 min-[500px]:mt-7">
       <button
         onClick={() => {
           router.push("/inbox");
-          // setActiveButton("inbox");
         }}
         className={`w-9 rounded-md px-2 ${
           path == "/inbox" ? "bg-[#06D440]" : "bg-[#FEFEFE0D]"
@@ -34,7 +32,6 @@ const NavButtons = () => {
       <button
         onClick={() => {
           router.push("/profile");
-          // setActiveButton("profile");
         }}
         className={`w-9 rounded-md px-2 py-1 ${
           path == "/profile" ? "bg-[#06D440]" : "bg-[#FEFEFE0D]"

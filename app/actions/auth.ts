@@ -1,10 +1,9 @@
 "use server";
 
 import { getUser } from "@/lib/dal";
-import { FormState, LoginSchema, SignUpSchema } from "@/lib/definitions";
+import { LoginSchema, SignUpSchema } from "@/lib/definitions";
 import { createSession } from "@/lib/session";
 import { base_url } from "@/lib/utils";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function loginAction(prev: any, formData: FormData) {
@@ -17,7 +16,6 @@ export async function loginAction(prev: any, formData: FormData) {
 
   try {
     const responseMessage = await getUser(formData);
-    console.log(responseMessage, "response from login");
     if (responseMessage?.message) return { message: ["Invalid credentials"] };
   } catch (e) {
     return { message: ["Network Error"] };

@@ -14,7 +14,7 @@ async function findMessags(inbox_id: string) {
 
   try {
     const response = await fetch(`${base_url}/inboxes/${inbox_id}/messages`, {
-      method: "GET", // HTTP method
+      method: "GET",
       headers: {
         "User-Id": userId.toString(), // Passing the User-Id in the headers
         "Content-Type": "application/json", // Optional: If you are expecting JSON response
@@ -36,8 +36,7 @@ const InboxItemWrapper = async ({
   date,
 }: InboxItemProp) => {
   const messages = await findMessags(inbox_id);
-  // console.log(inbox_id);
-  // console.log(response);
+
   const messagesLength = messages.length;
   return (
     <>

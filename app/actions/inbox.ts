@@ -24,11 +24,9 @@ async function createInbox(submitData: string) {
     }
 
     const data = await response.json();
-    // Handle the JSON response here
     console.log("Inbox created successfully:", data);
   } catch (error) {
     console.error("Error creating inbox:", error);
-    // Handle the error here
   }
 }
 
@@ -58,8 +56,6 @@ export async function createInboxAction(prev: any, formData: FormData) {
   return { message: "success" };
 }
 
-/*Learn from this*/
-
 export async function deleteInbox(inboxId: string) {
   const { userId } = await verifySession();
   try {
@@ -75,17 +71,17 @@ export async function deleteInbox(inboxId: string) {
     }
 
     const data = await response.json();
-    // Handle the JSON response here
     console.log("Inbox deleted successfully:", data);
   } catch (error) {
     if (error instanceof SyntaxError) {
       console.error("Error parsing JSON response:", error);
-      // Handle the specific SyntaxError
+      // I received a syntax error sometimes when trying to parse the response, but the inbox was still deleted.
+      // So I just specifically handle the case where the error is a SyntaxError.
     } else {
       console.error("Error deleting inbox:", error);
     }
   }
 
   revalidatePath("/inbox");
-  redirect('/inbox');
+  redirect("/inbox");
 }

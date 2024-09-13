@@ -24,7 +24,9 @@ const RegisterForm: FC<FormType> = ({
           <span className="capitalize text-lg sm:text-3xl font-bold block mb-2 text-[#FEFEFE]">
             {title}
           </span>
-          <span className="block text-xs sm:text-sm text-[#FEFEFEB2]">{remark}</span>
+          <span className="block text-xs sm:text-sm text-[#FEFEFEB2]">
+            {remark}
+          </span>
         </div>
         <div className="space-y-5 w-[300px]">
           {firstField}
@@ -46,8 +48,10 @@ type InputProps = {
 export function Input({ label, formName }: InputProps) {
   return (
     <div>
-      <label htmlFor="dmail" className="block mb-2 text-sm sm:text-base text-[#FEFEFEB2]">
-        {/* Enter Email */}
+      <label
+        htmlFor="dmail"
+        className="block mb-2 text-sm sm:text-base text-[#FEFEFEB2]"
+      >
         {label}
       </label>
       <input
@@ -62,8 +66,12 @@ export function Input({ label, formName }: InputProps) {
 }
 
 export function ActionButton({ buttonText }: { buttonText: string }) {
+  //creating a reusable submit button used all over the project with the same design
   return (
-    <button type="submit" className="bg-[#06D440] text-sm sm:text-base block w-full py-2 rounded-md">
+    <button
+      type="submit"
+      className="bg-[#06D440] text-sm sm:text-base block w-full py-2 rounded-md"
+    >
       {buttonText}
     </button>
   );

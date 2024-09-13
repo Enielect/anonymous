@@ -1,7 +1,4 @@
-import { InboxData } from "@/utils/DummyData";
 import React from "react";
-import { base_url } from "@/lib/utils";
-import InboxItem from "@/components/Inbox/InboxItem";
 import InboxItemWrapper from "./InboxItemWrapper";
 
 type InboxData = {

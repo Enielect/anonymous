@@ -6,8 +6,10 @@ type InputProps = {
 export function ProfileInput({ label, formName }: InputProps) {
   return (
     <div>
-      <label htmlFor={formName} className="block mb-2 text-sm sm:text-base text-[#FEFEFEB2]">
-        {/* Enter Email */}
+      <label
+        htmlFor={formName}
+        className="block mb-2 text-sm sm:text-base text-[#FEFEFEB2]"
+      >
         {label}
       </label>
       <input

@@ -30,10 +30,7 @@ const InboxItem: React.FC<InboxItemProp> = ({
   const router = useRouter();
 
   const [isClicked, setIsClicked] = useState(false);
-  // function handleClose() {
-  //   setIsEdit(false);
-  //   setIsDelete(false);
-  // }
+
   const [state, action] = useFormState(
     editInboxName.bind(null, inbox_id),
     undefined
@@ -44,8 +41,6 @@ const InboxItem: React.FC<InboxItemProp> = ({
       setIsEdit(false);
     }
   }, [state]);
-
-  console.log(pending, "this is the pending state, where are youuuuuuuuuuu");
 
   const handleCopyLink = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -130,6 +125,7 @@ const InboxItem: React.FC<InboxItemProp> = ({
         </Link>
         <div className="flex-1">
           <div className="flex gap-2  justify-end items-center">
+            {/* Edit button */}
             <button onClick={() => setIsEdit(true)}>
               <svg
                 width="34"
@@ -146,6 +142,7 @@ const InboxItem: React.FC<InboxItemProp> = ({
               </svg>
             </button>
 
+            {/* delete button */}
             <button onClick={() => setIsDelete(true)}>
               <svg
                 width="27"

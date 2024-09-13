@@ -231,7 +231,6 @@ function LogOutModal({ onClose }: LogOutProp) {
         Are you sure you want to Log Out????
       </div>
       <div className="flex justify-between w-full mt-3">
-        {/* submit button to perform delete action */}
         <div className="flex-grow">
           <button
             className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"

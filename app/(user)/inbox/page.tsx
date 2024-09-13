@@ -2,7 +2,6 @@ import InboxHeader from "@/components/Inbox/InboxHeader";
 import InboxList from "@/components/Inbox/InboxList";
 import { verifySession } from "@/lib/dal";
 import { base_url } from "@/lib/utils";
-import { InboxData } from "@/utils/DummyData";
 import React from "react";
 
 async function getAllInboxes() {

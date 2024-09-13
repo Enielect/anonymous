@@ -14,7 +14,6 @@ async function fetchUserData() {
     return { username: data.username, email: data.email };
   } catch (error) {
     console.error("Failed to fetch user:", error);
-    // Handle the error here
   }
 }
 

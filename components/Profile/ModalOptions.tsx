@@ -20,7 +20,6 @@ export function UpdateChoice({ setEditProfileState }: UpdateChoiceProp) {
         What do you want to Edit?
       </div>
       <div className="flex justify-between w-full mt-3">
-        {/* submit button to perform delete action */}
         <div className="flex-grow">
           <button
             className="p-[5px] px-[8px] bg-[#06D440] text-sm sm:text-base w-full rounded-md flex-grow"

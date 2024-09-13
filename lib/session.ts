@@ -36,22 +36,6 @@ export async function createSession(userId: string) {
     path: "/",
   });
 }
-// export async function updateSessiion() {
-//   const session = cookies().get("session")?.value;
-//   const payload = decrypt(session);
-
-//   if (!session || !payload) return null;
-
-//   const expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24);
-
-//   cookies().set("cookies", session, {
-//     httpOnly: true,
-//     secure: true,
-//     expires: expiresAt,
-//     sameSite: "lax",
-//     path: "/",
-//   });
-// }
 
 export function deleteSession() {
   cookies().delete("session");

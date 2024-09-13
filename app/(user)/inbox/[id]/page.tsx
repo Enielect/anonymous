@@ -5,10 +5,10 @@ import { base_url } from "@/lib/utils";
 async function fetchInboxMessages(userId: string, inbox_id: string) {
   try {
     const inbox = await fetch(`${base_url}/inboxes/${inbox_id}/messages`, {
-      method: "GET", // HTTP method
+      method: "GET", 
       headers: {
         "User-Id": userId.toString(), // Convert userId to string
-        "Content-Type": "application/json", // Optional: If you are expecting JSON response
+        "Content-Type": "application/json", 
       },
     });
     const inboxMessages = await inbox.json();

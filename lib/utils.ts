@@ -33,7 +33,3 @@ export function getTimeAgo(isoTime: string): string {
   }
 }
 
-// Example usage:
-const isoTime = "2023-12-31T23:59:59Z"; // Replace with your ISO time
-const timeAgo = getTimeAgo(isoTime);
-//console.log(timeAgo); // Output: "10 months ago"

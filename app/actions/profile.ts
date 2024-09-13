@@ -1,16 +1,11 @@
 "use server";
 
 import { verifySession } from "@/lib/dal";
-import { SignUpSchema, passwordSchema } from "@/lib/definitions";
+import { passwordSchema } from "@/lib/definitions";
 import { deleteSession } from "@/lib/session";
 import { base_url } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
-type ObjectShape = {
-  username: string;
-  email: string;
-};
 
 function removeEmptyStringProperties(formData: FormData): FormData {
   const cleanedFormData = new FormData();
@@ -47,10 +42,6 @@ export async function editProfileAction(prev: any, formData: FormData) {
   } catch (e) {
     throw new Error("Edit profile failed");
   }
-
-  // return { message: "Profile updated successfully" };
-
-  // redirect("/profile");
 }
 
 export async function editUserPasswordAction(prev: any, formData: FormData) {
@@ -73,15 +64,12 @@ export async function editUserPasswordAction(prev: any, formData: FormData) {
     });
     const response = await user.json();
     if (!response.ok) throw new Error("Failed to edit password");
-    console.log(response);
   } catch (e) {
     throw new Error("Edit profile failed");
   }
 
   revalidatePath("/profile");
   return { message: "Password updated successfully" };
-
-  // redirect("/profile");
 }
 
 export async function logOutUser() {

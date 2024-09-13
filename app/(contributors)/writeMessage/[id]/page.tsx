@@ -8,11 +8,9 @@ type Props = {
   params: { id: string };
 };
 
-
-import { Send, Lock, AlertCircle, Divide } from "lucide-react";
+import { Send, Lock, AlertCircle } from "lucide-react";
 
 export default function MessageInput({ params }: Props) {
-  // inboxName = "General"
   const [message, setMessage] = useState("");
   const [charCount, setCharCount] = useState(0);
   const maxChars = 5000;
@@ -91,7 +89,7 @@ function SubmitButton({ message, state }: SubmitButtonProps) {
     <button
       type="submit"
       disabled={message.trim() === ""}
-      className="bg-[#06D440] text-white px-6 py-2 rounded-full font-semibold hover:bg-opacity-50 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+      className="bg-[#06D440] text-white sm:px-6 sm:py-2 py-1 px-3 sm:text-base text-sm rounded-full font-semibold hover:bg-opacity-50 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {pending && "Sending..."}
       {!pending && (

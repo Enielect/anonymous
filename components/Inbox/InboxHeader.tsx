@@ -2,11 +2,9 @@
 
 import React, { useState } from "react";
 import Modal from "../Modal";
-import { InboxModalCard } from "../modal/ModalCard";
 import RenderRegForm from "../RenderRegForm";
 
 const InboxHeader = () => {
-
   const [createInbox, setIsCreateInbox] = useState(false);
   function handleCloseModal() {
     setIsCreateInbox(false);
@@ -15,7 +13,6 @@ const InboxHeader = () => {
   return (
     <>
       <Modal isOpen={createInbox} onClose={handleCloseModal}>
-        {/* <InboxModalCard onClose={() => setIsCreateInbox(false)} /> */}
         <RenderRegForm onSuccess={handleCloseModal} />
       </Modal>
       <div className="flex min-[709px]:w-full relative justify-between items-center">

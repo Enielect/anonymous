@@ -24,7 +24,6 @@ const InboxMessages = ({
   inboxName,
   inbox_id,
 }: InboxMessageProp) => {
-  console.log(inboxMessages, "inboxMessages");
 
   return (
     <div>
@@ -144,7 +143,6 @@ function ShareButton({ inboxName, inbox_id }: ShareButtonProp) {
       await navigator.share(shareData);
       console.log("Shared successfully");
     } catch (err) {
-      // resultPara.textContent = `Error: ${err}`;
       console.error(err);
     }
   }
