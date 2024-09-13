@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { getTimeAgo, web_url } from "@/lib/utils";
 import { useFormState, useFormStatus } from "react-dom";
 import { editInboxName } from "@/app/(user)/inbox/action/inbox";
+import { revalidatePath } from "next/cache";
 
 interface InboxItemProp {
   inbox_name: string;
@@ -64,10 +65,15 @@ const InboxItem: React.FC<InboxItemProp> = ({
 
   const handleDelete = () => {
     startTransition(async () => {
-      await deleteInbox(inbox_id);
-      router.refresh();
+      const data = await deleteInbox(inbox_id);
     });
   };
+
+  useEffect(() => {
+    if (!pending) {
+      setIsDelete(false);
+    }
+  }, [pending]);
 
   return (
     <>
