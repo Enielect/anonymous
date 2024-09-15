@@ -63,9 +63,9 @@ This will be updated.
 
 ## Authors
 
-* **Abayomi Eniola** - *Frontend Developer* - [twitter](https://linkedin.com/enielect)
-* **Ukeme Edet** - *Backend Developer* - [github](https://github.com/ukeme-edet)
-* **Ogunneye Bukunmi** - *UI/UX Envineer* - bukunmiogunneye0@gmail.com
+* **Abayomi Eniola** - *Frontend Developer* - [LinkedIn](https://www.linkedin.com/in/eniola-abayomi-045605232)
+* **Ukeme Edet** - *Backend Developer* - [Github](https://github.com/ukeme-Edet)
+* **Ogunneye Bukunmi** - *UI/UX Engineer* - bukunmiogunneye0@gmail.com
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
