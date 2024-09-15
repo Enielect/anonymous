@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Whispers - Anonymous Messaging Platform
+
+Whispers is a platform that allows users to communicate thoughts anonymously, fostering freedom of expression.
+
+## Features
+
+- **Anonymous Messaging**: Share your thoughts without revealing your identity.
+- **Secure**: We prioritize your privacy. Your personal information is never shared.
+- **User-friendly Interface**: Easy to use, intuitive design.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
+
+
+### Prerequisites
+
+You need to be running Node.js 20+ and npm.
+
+
+### Installing
+Run this command on your local environment to clone the repo
+```
+git clone https://github.com/Enielect/anonymous.git my-project-name
+```
+move to the folder that the project is cloned to
+```
+cd my-project-name
+```
+Run the following to add all dependencies
+```
+npm install
+```
+Then you can run the project locally in development mode by executing
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running the tests
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Working on adding tests to the app.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+You can build the project for production by running
+```
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Built With
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+* [React](https://reactjs.org/) - The javascript library used
+* [Next.js](https://nextjs.org/) - The javascript Frameowrk (extended react)
+* [Tailwindcss](https://tailwindcss.com) - The styling option used
+* [Zod](https://zod.dev) - The form input validation used
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<!-- Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us. -->
+This will be updated.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Authors
+
+* **Abayomi Eniola** - *Frontend Developer* - [twitter](https://linkedin.com/enielect)
+* **Ukeme Edet** - *Backend Developer* - [github](https://github.com/ukeme-edet)
+* **Ogunneye Bukunmi** - *UI/UX Envineer* - bukunmiogunneye0@gmail.com
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+There is no license for this project yet.
+
