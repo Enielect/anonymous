@@ -22,7 +22,7 @@ You need to be running Node.js 20+ and npm.
 ### Installing
 Run this command on your local environment to clone the repo
 ```
-git clone https://github.com/Enielect/anonymous.git my-project-name
+git clone https://github.com/Enielect/whispers-Frontend.git my-project-name
 ```
 move to the folder that the project is cloned to
 ```
