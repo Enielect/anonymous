@@ -65,11 +65,12 @@ export function Input({ label, formName }: InputProps) {
   );
 }
 
-export function ActionButton({ buttonText }: { buttonText: string }) {
+export function ActionButton({ buttonText, pending }: { buttonText: string, pending: boolean }) {
   //creating a reusable submit button used all over the project with the same design
   return (
     <button
       type="submit"
+      disabled={pending}
       className="bg-[#06D440] text-white text-sm sm:text-base block w-full py-2 rounded-md"
     >
       {buttonText}

@@ -88,7 +88,7 @@ function SubmitButton({ message, state }: SubmitButtonProps) {
   return (
     <button
       type="submit"
-      disabled={message.trim() === ""}
+      disabled={message.trim() === "" || pending}
       className="bg-[#06D440] text-white sm:px-6 sm:py-2 py-1 px-3 sm:text-base text-sm rounded-full font-semibold hover:bg-opacity-50 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {pending && "Sending..."}

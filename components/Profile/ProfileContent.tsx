@@ -198,13 +198,17 @@ function DeleteUserModal({ onClose }: DeleteUserModalProp) {
         {/* submit button to perform delete action */}
         <div className="flex-grow">
           <button
-            className="p-[5px] bg-[#06D440] text-white w-full rounded-md flex-grow"
+            disabled={pending}
+            className="p-[5px] bg-[#06D440] text-sm sm:text-base text-white w-full rounded-md flex-grow"
             onClick={handleDeleteUser}
           >
             {pending ? "Deleting..." : "Yes"}
           </button>
         </div>
-        <button className={`p-[5px] text-white rounded-md flex-grow`} onClick={onClose}>
+        <button
+          className={`p-[5px] text-white rounded-md flex-grow`}
+          onClick={onClose}
+        >
           Cancel
         </button>
       </div>
@@ -239,7 +243,10 @@ function LogOutModal({ onClose }: LogOutProp) {
             {pending ? "logging out.." : "Yes"}
           </button>
         </div>
-        <button className={`p-[5px] text-white rounded-md flex-grow`} onClick={onClose}>
+        <button
+          className={`p-[5px] text-white rounded-md flex-grow`}
+          onClick={onClose}
+        >
           Cancel
         </button>
       </div>

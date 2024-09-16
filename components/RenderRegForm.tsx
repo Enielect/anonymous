@@ -46,7 +46,7 @@ function CreateInboxButton({ onSuccess, state }: CreateInboxButtonProp) {
       onSuccess && onSuccess();
     }
   }, [state, pending, onSuccess]);
-  return <ActionButton buttonText={pending ? "Creating..." : "Create Inbox"} />;
+  return <ActionButton pending={pending} buttonText={pending ? "Creating..." : "Create Inbox"} />;
 }
 
 export default RenderRegForm;

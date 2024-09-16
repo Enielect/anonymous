@@ -24,7 +24,6 @@ const InboxMessages = ({
   inboxName,
   inbox_id,
 }: InboxMessageProp) => {
-
   return (
     <div>
       <TopNav inboxName={inboxName} inbox_id={inbox_id} name={inboxName} />
@@ -69,7 +68,8 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
       <Modal isOpen={isDelete} onClose={() => setIsDelete(false)}>
         <DeleteModalCard inboxName={name} onClose={() => setIsDelete(false)}>
           <button
-            className="p-[5px] bg-[#06D440] text-white w-full rounded-md flex-grow"
+            disabled={pending}
+            className="p-[5px] bg-[#06D440] text-sm sm:text-base text-white w-full rounded-md flex-grow"
             onClick={handleDelete}
           >
             {pending ? "Deleting..." : "Confirm"}

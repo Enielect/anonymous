@@ -81,7 +81,12 @@ export function EditUserEmailForm({ close }: EditProp) {
 
 function EditUserButton() {
   const { pending } = useFormStatus();
-  return <ActionButton buttonText={pending ? "Saving..." : "Save Profile"} />;
+  return (
+    <ActionButton
+      pending={pending}
+      buttonText={pending ? "Saving..." : "Save Profile"}
+    />
+  );
 }
 
 export function PasswordResetForm({ close }: EditProp) {
@@ -108,8 +113,18 @@ export function PasswordResetForm({ close }: EditProp) {
           </>
         }
         remark="your password information"
-        actionButton={<ActionButton buttonText="Change Password" />}
+        actionButton={<PasswordResetButton />}
       />
     </form>
+  );
+}
+
+function PasswordResetButton() {
+  const { pending } = useFormStatus();
+  return (
+    <ActionButton
+      pending={pending}
+      buttonText={pending ? "Changing..." : "Change Password"}
+    />
   );
 }

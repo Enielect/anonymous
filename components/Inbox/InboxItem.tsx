@@ -109,7 +109,8 @@ const InboxItem: React.FC<InboxItemProp> = ({
           onClose={() => setIsDelete(false)}
         >
           <button
-            className="p-[5px] bg-[#06D440] text-white w-full rounded-md flex-grow"
+            disabled={pending}
+            className="p-[5px] bg-[#06D440] text-sm sm:text-base text-white w-full rounded-md flex-grow"
             onClick={handleDelete}
           >
             {pending ? "Deleting..." : "Confirm"}
@@ -122,12 +123,16 @@ const InboxItem: React.FC<InboxItemProp> = ({
           href={`/inbox/${inbox_id}`}
           className="grid flex-[8] min-[500px]:grid-cols-2 grid-cols-1 min-[709px]:grid-cols-3"
         >
-          <div className="pr-2 text-sm text-white md:text-base">{inbox_name}</div>
+          <div className="pr-2 text-sm text-white md:text-base">
+            {inbox_name}
+          </div>
           <div className="text-[#06D440] hidden min-[500px]:block">
             {" "}
             {Number(messages)} Messages{" "}
           </div>
-          <span className="min-[709px]:block text-white hidden">{getTimeAgo(date)}</span>
+          <span className="min-[709px]:block text-white hidden">
+            {getTimeAgo(date)}
+          </span>
         </Link>
         <div className="flex-1">
           <div className="flex gap-2  justify-end items-center">
@@ -202,7 +207,12 @@ function CheckIcon() {
 function EditInbxNameButton() {
   const { pending: editPending } = useFormStatus();
 
-  return <ActionButton buttonText={editPending ? "Editing..." : "Edit"} />;
+  return (
+    <ActionButton
+      pending={editPending}
+      buttonText={editPending ? "Editing..." : "Edit"}
+    />
+  );
 }
 
 export default InboxItem;
