@@ -58,7 +58,7 @@ export function Input({ label, formName }: InputProps) {
         type={formName}
         name={formName}
         id={formName}
-        className="bg-[#FEFEFE0D] border px-3 rounded-md w-full border-[#FEFEFE33] h-10 focus:outline-none"
+        className="bg-[#FEFEFE0D] text-white border px-3 rounded-md w-full border-[#FEFEFE33] h-10 focus:outline-none"
         required
       />
     </div>
@@ -70,7 +70,7 @@ export function ActionButton({ buttonText }: { buttonText: string }) {
   return (
     <button
       type="submit"
-      className="bg-[#06D440] text-sm sm:text-base block w-full py-2 rounded-md"
+      className="bg-[#06D440] text-white text-sm sm:text-base block w-full py-2 rounded-md"
     >
       {buttonText}
     </button>

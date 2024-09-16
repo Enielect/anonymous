@@ -109,7 +109,7 @@ const InboxItem: React.FC<InboxItemProp> = ({
           onClose={() => setIsDelete(false)}
         >
           <button
-            className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
+            className="p-[5px] bg-[#06D440] text-white w-full rounded-md flex-grow"
             onClick={handleDelete}
           >
             {pending ? "Deleting..." : "Confirm"}
@@ -122,12 +122,12 @@ const InboxItem: React.FC<InboxItemProp> = ({
           href={`/inbox/${inbox_id}`}
           className="grid flex-[8] min-[500px]:grid-cols-2 grid-cols-1 min-[709px]:grid-cols-3"
         >
-          <div className="pr-2 text-sm md:text-base">{inbox_name}</div>
+          <div className="pr-2 text-sm text-white md:text-base">{inbox_name}</div>
           <div className="text-[#06D440] hidden min-[500px]:block">
             {" "}
             {Number(messages)} Messages{" "}
           </div>
-          <span className="min-[709px]:block hidden">{getTimeAgo(date)}</span>
+          <span className="min-[709px]:block text-white hidden">{getTimeAgo(date)}</span>
         </Link>
         <div className="flex-1">
           <div className="flex gap-2  justify-end items-center">

@@ -69,7 +69,7 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
       <Modal isOpen={isDelete} onClose={() => setIsDelete(false)}>
         <DeleteModalCard inboxName={name} onClose={() => setIsDelete(false)}>
           <button
-            className="p-[5px] bg-[#06D440] w-full rounded-md flex-grow"
+            className="p-[5px] bg-[#06D440] text-white w-full rounded-md flex-grow"
             onClick={handleDelete}
           >
             {pending ? "Deleting..." : "Confirm"}
@@ -79,7 +79,7 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
       <div className="flex fixed w-full justify-between px-5 py-3 min-[500px]:pr-[70px] bg-[#080808]">
         <div className="flex items-center gap-3">
           <BackButton />
-          <span className="text-sm sm:text-base">{name}</span>
+          <span className="text-sm sm:text-base text-white">{name}</span>
         </div>
         <div className="space-x-3">
           <>
@@ -87,7 +87,7 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
             <ShareButton inbox_id={inbox_id} inboxName={inboxName} />
           </>
           <button
-            className="bg-[#06D440] hidden min-[450px]:inline-block inbox-button"
+            className="bg-[#06D440] text-white hidden min-[450px]:inline-block inbox-button"
             onClick={() => setIsDelete(true)}
           >
             Delete Inbox
@@ -122,7 +122,7 @@ function CopyButton({ inbox_id }: { inbox_id: string }) {
   return (
     <button
       onClick={handleCopyLink}
-      className="bg-[#FEFEFE0D] hidden md:inline-block border border-[#06D440] inbox-button"
+      className="bg-[#FEFEFE0D] hidden text-white md:inline-block border border-[#06D440] inbox-button"
     >
       {clicked ? "Copied" : "Copy Link"}
     </button>

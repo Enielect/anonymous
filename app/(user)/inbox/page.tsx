@@ -50,9 +50,9 @@ function InboxListHeader() {
   return (
     <div className=" bg-[#151515]  py-[12px] px-[20px] w-full flex justify-between">
       <div className="grid flex-[8] min-[709px]:grid-cols-3 items-center min-[500px]:grid-cols-2 grid-cols-1">
-        <div className="py-3 sm:py-0">Inbox name</div>
-        <div className="hidden min-[500px]:block">Total messages</div>
-        <div className="min-[709px]:block hidden">Date Created</div>
+        <div className="py-3 sm:py-0 text-white">Inbox name</div>
+        <div className="hidden min-[500px]:block text-white">Total messages</div>
+        <div className="min-[709px]:block hidden text-white">Date Created</div>
       </div>
       <div className=" flex-1 h-[5px]"></div>
     </div>

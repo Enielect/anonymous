@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 
@@ -7,6 +7,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Whispers",
   description: "Send anonymous messages among friends, foes, and family",
+};
+
+export const viewport: Viewport = {
+  themeColor: "black",
 };
 
 export default function RootLayout({
