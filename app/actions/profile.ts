@@ -40,7 +40,7 @@ export async function editProfileAction(prev: any, formData: FormData) {
     const user = await response.json();
     return { message: user.message };
   } catch (e) {
-    throw new Error("Edit profile failed");
+    console.error("Update Password", e);
   }
 }
 
@@ -62,10 +62,11 @@ export async function editUserPasswordAction(prev: any, formData: FormData) {
         "Content-Type": "application/json",
       },
     });
+    if (!user.ok) throw new Error("Failed to edit password");
     const response = await user.json();
-    if (!response.ok) throw new Error("Failed to edit password");
+    console.log(response)
   } catch (e) {
-    throw new Error("Edit profile failed");
+    console.log("Failed to update users password", e);
   }
 
   revalidatePath("/profile");

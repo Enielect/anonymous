@@ -1,6 +1,7 @@
 "use server";
 
 import { base_url } from "@/lib/utils";
+import { revalidatePath } from "next/cache";
 
 export async function sendMessage(id: string, prev: any, formData: FormData) {
   const responseBody = { body: formData.get("body") };

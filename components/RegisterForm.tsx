@@ -55,7 +55,7 @@ export function Input({ label, formName }: InputProps) {
         {label}
       </label>
       <input
-        type={formName}
+        type={"text"}
         name={formName}
         id={formName}
         className="bg-[#FEFEFE0D] text-white border px-3 rounded-md w-full border-[#FEFEFE33] h-10 focus:outline-none"
@@ -65,7 +65,13 @@ export function Input({ label, formName }: InputProps) {
   );
 }
 
-export function ActionButton({ buttonText, pending }: { buttonText: string, pending: boolean }) {
+export function ActionButton({
+  buttonText,
+  pending,
+}: {
+  buttonText: string;
+  pending: boolean;
+}) {
   //creating a reusable submit button used all over the project with the same design
   return (
     <button

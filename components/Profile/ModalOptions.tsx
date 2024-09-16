@@ -16,20 +16,20 @@ type UpdateChoiceProp = {
 export function UpdateChoice({ setEditProfileState }: UpdateChoiceProp) {
   return (
     <div className="md:p-[15px_20px] p-[10px_15px] max-w-[500px] bg-[#FEFEFE0D] rounded-lg w-[max(50%, 300px)] md:w-[min(50vw,500px)]">
-      <div className="font-medium text-[12px] md:text-base my-2">
+      <div className="font-medium text-white text-[12px] md:text-base my-2">
         What do you want to Edit?
       </div>
       <div className="flex justify-between w-full mt-3">
         <div className="flex-grow">
           <button
-            className="p-[5px] px-[8px] bg-[#06D440] text-sm sm:text-base w-full rounded-md flex-grow"
+            className="p-[5px] text-white px-[8px] bg-[#06D440] text-sm sm:text-base w-full rounded-md flex-grow"
             onClick={() => setEditProfileState("username/email")}
           >
             Email/Username
           </button>
         </div>
         <button
-          className={`p-[5px] px-[7px] text-sm sm:text-base rounded-md flex-grow`}
+          className={`p-[5px] px-[7px] text-white text-sm sm:text-base rounded-md flex-grow`}
           onClick={() => setEditProfileState("password")}
         >
           Password
@@ -96,7 +96,7 @@ export function PasswordResetForm({ close }: EditProp) {
   );
 
   useEffect(() => {
-    if (passwordState?.message === "Profile updated successfully") {
+    if (passwordState?.message === "Password updated successfully") {
       close();
     }
   }, [passwordState?.message, close]);
@@ -108,7 +108,7 @@ export function PasswordResetForm({ close }: EditProp) {
           <>
             <Input label="Enter New Password" formName="newPassword" />
             {passwordState?.errors?.newPassword && (
-              <p>{passwordState.errors.newPassword}</p>
+              <p className="text-white">{passwordState.errors.newPassword}</p>
             )}
           </>
         }
