@@ -66,7 +66,7 @@ const Login = () => {
           </div>
           <LoginButton />
 
-          <span className="block text-xs sm:text-base">
+          <span className="block text-xs text-white sm:text-base">
             Already have an account?{" "}
             <Link href="/create" className="text-[#06D440] cursor-pointer ml-1">
               Sign up
@@ -85,7 +85,7 @@ function LoginButton() {
     <button
       disabled={pending}
       type="submit"
-      className="bg-[#06D440] text-sm sm:text-base py-1 block w-full sm:py-2 rounded-md"
+      className="bg-[#06D440] text-white text-sm sm:text-base py-1 block w-full sm:py-2 rounded-md"
     >
       {pending ? "Processing..." : "Log In"}
     </button>
