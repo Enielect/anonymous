@@ -32,7 +32,7 @@ const SignUp = () => {
               type="username"
               name="username"
               id="username"
-              className="bg-[#FEFEFE0D] text-white border px-3 rounded-md w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
+              className="bg-[#FEFEFE0D] text-sm sm:text-base text-white border px-3 rounded-md w-full border-[#FEFEFE33] h-8 sm:h-10 focus:outline-none"
               required
             />
             {state?.errors?.username && (

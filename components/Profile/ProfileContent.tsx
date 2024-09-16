@@ -233,7 +233,7 @@ function LogOutModal({ onClose }: LogOutProp) {
       <div className="flex justify-between w-full mt-3">
         <div className="flex-grow">
           <button
-            className="p-[5px] bg-[#06D440] text-white w-full rounded-md flex-grow"
+            className="p-[5px] bg-[#06D440] text-sm text-white w-full rounded-md flex-grow"
             onClick={handleLogOut}
           >
             {pending ? "logging out.." : "Yes"}
