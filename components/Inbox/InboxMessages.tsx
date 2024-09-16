@@ -150,7 +150,7 @@ function ShareButton({ inboxName, inbox_id }: ShareButtonProp) {
   return (
     <button
       onClick={handleShare}
-      className="bg-[#FEFEFE0D] inline-block md:hidden border border-[#06D440] inbox-button"
+      className="bg-[#FEFEFE0D] text-white inline-block md:hidden border border-[#06D440] inbox-button"
     >
       Share
     </button>
