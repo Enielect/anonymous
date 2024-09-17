@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
-  manifest: "/manifest.json",
+  manifest: "/manifest.webmanifest",
   icons: {
     apple: "/apple-touch-icon.png",
     icon: "/favicon.ico",
