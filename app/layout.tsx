@@ -63,6 +63,40 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="167x167"
+          href="/apple-touch-icon.png"
+        />
+
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.webmanifest" />
+
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </head>
       <body className={`${inter.className} h-screen min-h-[100dvh]`}>
         <div className="min-h-screen">{children}</div>
         <Analytics />
