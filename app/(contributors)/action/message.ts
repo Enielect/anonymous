@@ -17,7 +17,7 @@ export async function sendMessage(id: string, prev: any, formData: FormData) {
 
     if (!response.ok) throw new Error("Failed to create message");
     const data = await response.json();
-    return { message: data.created_at };
+    return { message: "Message sent successfully" };
   } catch (error) {
     console.log(error);
     return { error: "Failed to send message" };
