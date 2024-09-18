@@ -14,7 +14,7 @@ const Login = () => {
       action={action}
       className="absolute top-1/2  left-1/2 -translate-y-1/2 px-6 -translate-x-1/2"
     >
-      <div className="md:max-w-[50rem] max-w-[350px] gap-10 bg-[#FEFEFE08] items-center py-4 sm:py-10 min-h-[280px] rounded-xl flex flex-col  md:flex-row justify-between px-7">
+      <div className="md:max-w-[50rem] max-w-[350px] gap-10 bg-[#FEFEFE08] items-center py-4 sm:py-10 min-h-[280px] mx-3 sm:mx-0 rounded-xl flex flex-col  md:flex-row justify-between px-7">
         <div className="w-[200px]">
           <span className="capitalize text-2xl sm:text-3xl text-center md:text-justify font-bold block mb-2 text-[#FEFEFE]">
             Log In
@@ -66,7 +66,7 @@ const Login = () => {
           </div>
           <LoginButton />
 
-          <span className="block text-xs text-white sm:text-base">
+          <span className="block text-sm text-white sm:text-base">
             Already have an account?{" "}
             <Link href="/create" className="text-[#06D440] cursor-pointer ml-1">
               Sign up
@@ -85,7 +85,7 @@ function LoginButton() {
     <button
       disabled={pending}
       type="submit"
-      className="bg-[#06D440] text-white text-sm sm:text-base py-1 block w-full sm:py-2 rounded-md"
+      className="bg-[#06D440] text-white text-sm sm:text-base block w-full py-2 rounded-md"
     >
       {pending ? "Processing..." : "Log In"}
     </button>

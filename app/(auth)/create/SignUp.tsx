@@ -14,7 +14,7 @@ const SignUp = () => {
       action={action}
       className="absolute top-1/2  left-1/2 -translate-y-1/2 px-6 -translate-x-1/2"
     >
-      <div className="md:max-w-[50rem] max-w-[350px] gap-10 bg-[#FEFEFE08] items-center py-10 min-h-[280px] rounded-xl  flex flex-col md:flex-row justify-between px-7">
+      <div className="md:max-w-[50rem] max-w-[350px] gap-10 bg-[#FEFEFE08] items-center py-10 min-h-[280px] rounded-xl  flex flex-col md:flex-row mx-3 sm:mx-0 justify-between px-7">
         <div className="w-[200px]">
           <span className="capitalize text-lg sm:text-3xl text-center md:text-justify font-bold block mb-2 text-[#FEFEFE]">
             Create account
@@ -78,7 +78,7 @@ const SignUp = () => {
             )}
           </div>
           <SignUpButton />
-          <span className="block text-white text-xs">
+          <span className="block text-white text-sm md:text-base">
             Don&apos;t Have An Acccount{" "}
             <Link href="/login" className="text-[#06D440] cursor-pointer ml-1">
               Log in
@@ -97,7 +97,7 @@ function SignUpButton() {
     <button
       disabled={pending}
       type="submit"
-      className="bg-[#06D440] block text-white text-sm sm:text-base py-1 w-full sm:py-2 rounded-md"
+      className="bg-[#06D440] block text-white text-sm sm:text-base w-full py-2 rounded-md"
     >
       {pending ? "Registering..." : "Sign Up"}
     </button>
