@@ -36,7 +36,7 @@ const MessageWrapper = ({ id, inboxName }: WrapperProp) => {
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-2xl mx-auto p-6 bg-[#151515] rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-white mb-4">
-          Share an Anonymous Message {`inbox: ${inboxName ?? ""}`}
+          Share an Anonymous Message. {`inbox: ${inboxName ?? ""}`}
         </h2>
         <div className="bg-[#3a3a3a] p-4 rounded-lg mb-4 flex items-center text-yellow-400">
           <AlertCircle className="w-5 h-5 mr-2" />
