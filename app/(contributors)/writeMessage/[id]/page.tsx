@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { sendMessage } from "../../action/message";
+import { Send, Lock, AlertCircle } from "lucide-react";
+import { fetchInboxName } from "@/lib/utils";
 
 type Props = {
   params: { id: string };
 };
 
-import { Send, Lock, AlertCircle } from "lucide-react";
-import { fetchInboxName } from "@/lib/utils";
 
 export default function MessageInput({ params }: Props) {
   const [message, setMessage] = useState("");
@@ -21,10 +21,12 @@ export default function MessageInput({ params }: Props) {
   const [state, action] = useFormState(sendMessage.bind(null, id), undefined);
 
   useEffect(() => {
-    fetchInboxName(id).then((data) => {
-      setInboxName(`[${data?.name}]`);
-    });
-  }, []);
+    async function findInboxName(id: string) {
+      const result = await fetchInboxName(id);
+      setInboxName(result?.name ?? '');
+    }
+    findInboxName(id);
+  }, [id]);
 
   useEffect(() => {
     if (state?.message) {
