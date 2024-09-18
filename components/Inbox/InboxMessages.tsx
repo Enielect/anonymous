@@ -24,23 +24,27 @@ const InboxMessages = ({
   inboxName,
   inbox_id,
 }: InboxMessageProp) => {
+  //sorting messages based on the most current createdTime property of the message, note the createdTime is an ISOstring
+
   return (
     <div>
       <TopNav inboxName={inboxName} inbox_id={inbox_id} name={inboxName} />
       <div className="space-y-3 px-5 py-5 pt-[80px]">
-        {inboxMessages.map(({ body, id, created_at }) => (
-          <div
-            key={id}
-            className="flex justify-between gap-[50px] px-5 pr-0 py-3 border-l border-[#06D440] text-sm text-[#FEFEFEB2]"
-          >
-            <div>
-              <span>{body}</span>
+        {inboxMessages
+          .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          .map(({ body, id, created_at }) => (
+            <div
+              key={id}
+              className="flex justify-between gap-[50px] px-5 pr-0 py-3 border-l border-[#06D440] text-sm text-[#FEFEFEB2]"
+            >
+              <div>
+                <span>{body}</span>
+              </div>
+              <div className=" flex-nowrap text-xs sm:text-sm min-w-[70px] min:[580px]:min-w-[120px]">
+                {getTimeAgo(created_at) || 0}
+              </div>
             </div>
-            <div className=" flex-nowrap text-xs sm:text-sm min-w-[70px] min:[580px]:min-w-[120px]">
-              {getTimeAgo(created_at) || 0}
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 export const base_url = process.env.BASE_URL;
-export const web_url = process.env.NEXT_PUBLIC_WEB_URL
+export const web_url = process.env.NEXT_PUBLIC_WEB_URL;
 
 export function convertTimeFormat(isoTime: string) {
   const date = new Date(isoTime);
@@ -33,3 +33,13 @@ export function getTimeAgo(isoTime: string): string {
   }
 }
 
+export async function fetchInboxName(inbox_id: string) {
+  try {
+    const response = await fetch(`${base_url}/inboxes/${inbox_id}`);
+    if (!response.ok) throw new Error("Failed to fetch inbox name");
+    const data = await response.json();
+    return { name: data.name };
+  } catch (err) {
+    console.error(err);
+  }
+}
