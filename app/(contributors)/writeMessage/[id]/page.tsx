@@ -9,19 +9,28 @@ type Props = {
 };
 
 import { Send, Lock, AlertCircle } from "lucide-react";
+import { fetchInboxName } from "@/lib/utils";
 
 export default function MessageInput({ params }: Props) {
   const [message, setMessage] = useState("");
   const [charCount, setCharCount] = useState(0);
+  const [inboxName, setInboxName] = useState("");
   const maxChars = 5000;
 
   const id = params.id;
   const [state, action] = useFormState(sendMessage.bind(null, id), undefined);
 
   useEffect(() => {
+    fetchInboxName(id).then((data) => {
+      setInboxName(`[${data?.name}]`);
+    });
+  }, []);
+
+  useEffect(() => {
     if (state?.message) {
       setMessage("");
       setCharCount(0);
+      console.log(state.message, "state.message");
     }
   }, [setMessage, state]);
 
@@ -37,7 +46,7 @@ export default function MessageInput({ params }: Props) {
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-2xl mx-auto p-6 bg-[#151515] rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-white mb-4">
-          Share an Anonymous Message (Whisper)
+          Share an Anonymous Message {`inbox: ${inboxName}`}
         </h2>
         <div className="bg-[#3a3a3a] p-4 rounded-lg mb-4 flex items-center text-yellow-400">
           <AlertCircle className="w-5 h-5 mr-2" />
@@ -59,13 +68,16 @@ export default function MessageInput({ params }: Props) {
               {charCount}/{maxChars}
             </div>
           </div>
-          {state?.error && <p className="text-red-500 ">{state.error}</p>}
+          {state?.error && <p className="text-red-500 py-2">{state.error}</p>}
+          {state?.message && charCount === 0 && (
+            <p className="text-green-500 py-2">{state.message}</p>
+          )}
           <div className="flex justify-between items-center">
             <div className="flex items-center text-green-400">
               <Lock className="w-4 h-4 mr-2" />
               <span className="text-sm">End-to-end encrypted</span>
             </div>
-            <SubmitButton message={message} state={state} />
+            <SubmitButton message={message} />
           </div>
         </form>
       </div>
@@ -73,17 +85,11 @@ export default function MessageInput({ params }: Props) {
   );
 }
 
-type StateType =
-  | { message: any; error?: undefined }
-  | { error: string; message?: undefined }
-  | undefined;
-
 type SubmitButtonProps = {
   message: string;
-  state: StateType;
 };
 
-function SubmitButton({ message, state }: SubmitButtonProps) {
+function SubmitButton({ message }: SubmitButtonProps) {
   const { pending } = useFormStatus();
   return (
     <button
