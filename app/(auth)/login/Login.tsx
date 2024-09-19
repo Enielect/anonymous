@@ -67,7 +67,7 @@ const Login = () => {
           <LoginButton />
 
           <span className="block text-sm text-white sm:text-base">
-            Already have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="/create" className="text-[#06D440] cursor-pointer ml-1">
               Sign up
             </Link>

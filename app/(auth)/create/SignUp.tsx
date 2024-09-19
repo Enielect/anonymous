@@ -25,7 +25,10 @@ const SignUp = () => {
         </div>
         <div className="space-y-5 w-[300px]">
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm sm:text-base text-[#FEFEFEB2]">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm sm:text-base text-[#FEFEFEB2]"
+            >
               username
             </label>
             <input
@@ -41,7 +44,10 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label htmlFor="dmail" className="block text-sm sm:text-base mb-2 text-[#FEFEFEB2]">
+            <label
+              htmlFor="email"
+              className="block text-sm sm:text-base mb-2 text-[#FEFEFEB2]"
+            >
               Enter Email
             </label>
             <input
@@ -56,7 +62,10 @@ const SignUp = () => {
             )}
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm sm:text-base mb-2 text-[#FEFEFEB2]">
+            <label
+              htmlFor="password"
+              className="block text-sm sm:text-base mb-2 text-[#FEFEFEB2]"
+            >
               Enter Password
             </label>
             <input
@@ -79,7 +88,7 @@ const SignUp = () => {
           </div>
           <SignUpButton />
           <span className="block text-white text-sm md:text-base">
-            Don&apos;t Have An Acccount{" "}
+            Already Have An Acccount?{" "}
             <Link href="/login" className="text-[#06D440] cursor-pointer ml-1">
               Log in
             </Link>
