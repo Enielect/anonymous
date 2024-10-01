@@ -1,6 +1,7 @@
 "use client";
 
 import React, { FC, ReactNode } from "react";
+import Loader from "./Loader";
 
 interface FormType {
   title: string;
@@ -77,8 +78,9 @@ export function ActionButton({
     <button
       type="submit"
       disabled={pending}
-      className="bg-[#06D440] text-white text-sm sm:text-base block w-full py-2 rounded-md"
+      className="bg-[#06D440] text-white text-sm sm:text-base flex items-center justify-center gap-4 w-full py-2 rounded-md"
     >
+      {pending && <Loader />}
       {buttonText}
     </button>
   );

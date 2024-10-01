@@ -16,7 +16,7 @@ export function ProfileInput({ label, formName }: InputProps) {
         type={formName}
         name={formName}
         id={formName}
-        className="bg-[#FEFEFE0D] border px-3 rounded-md w-full border-[#FEFEFE33] h-10 focus:outline-none"
+        className="bg-[#FEFEFE0D] text-white border px-3 rounded-md w-full border-[#FEFEFE33] h-10 focus:outline-none"
       />
     </div>
   );

@@ -10,6 +10,7 @@ import {
 } from "./ModalOptions";
 import { useRouter } from "next/navigation";
 import { deleteUser, logOutUser } from "@/app/actions/profile";
+import Loader from "../Loader";
 
 type ProfileContentProps = {
   username: string;
@@ -199,9 +200,10 @@ function DeleteUserModal({ onClose }: DeleteUserModalProp) {
         <div className="flex-grow">
           <button
             disabled={pending}
-            className="p-[5px] bg-[#06D440] text-sm sm:text-base text-white w-full rounded-md flex-grow"
+            className="bg-[#06D440] text-white text-sm sm:text-base flex items-center justify-center gap-4 w-full py-2 rounded-md"
             onClick={handleDeleteUser}
           >
+            {pending && <Loader />}
             {pending ? "Deleting..." : "Yes"}
           </button>
         </div>
@@ -237,10 +239,11 @@ function LogOutModal({ onClose }: LogOutProp) {
       <div className="flex justify-between w-full mt-3">
         <div className="flex-grow">
           <button
-            className="p-[5px] bg-[#06D440] text-sm text-white w-full rounded-md flex-grow"
+            className="bg-[#06D440] text-white text-sm sm:text-base flex items-center justify-center gap-4 w-full py-2 rounded-md"
             onClick={handleLogOut}
           >
-            {pending ? "logging out.." : "Yes"}
+            {pending && <Loader />}
+            {pending ? "Logging out.." : "Yes"}
           </button>
         </div>
         <button

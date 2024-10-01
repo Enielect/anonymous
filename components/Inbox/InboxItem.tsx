@@ -11,6 +11,7 @@ import { getTimeAgo, web_url } from "@/lib/utils";
 import { useFormState, useFormStatus } from "react-dom";
 import { editInboxName } from "@/app/(user)/inbox/action/inbox";
 import { revalidatePath } from "next/cache";
+import Loader from "../Loader";
 
 interface InboxItemProp {
   inbox_name: string;
@@ -110,9 +111,10 @@ const InboxItem: React.FC<InboxItemProp> = ({
         >
           <button
             disabled={pending}
-            className="p-[5px] bg-[#06D440] text-sm sm:text-base text-white w-full rounded-md flex-grow"
+            className="bg-[#06D440] text-white text-sm sm:text-base flex items-center justify-center gap-4 w-full py-2 rounded-md"
             onClick={handleDelete}
           >
+            {pending && <Loader />}
             {pending ? "Deleting..." : "Confirm"}
           </button>
         </DeleteModalCard>

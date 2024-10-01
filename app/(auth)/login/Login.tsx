@@ -1,6 +1,7 @@
 "use client";
 
 import { loginAction } from "@/app/actions/auth";
+import Loader from "@/components/Loader";
 import Link from "next/link";
 import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -85,8 +86,9 @@ function LoginButton() {
     <button
       disabled={pending}
       type="submit"
-      className="bg-[#06D440] text-white text-sm sm:text-base block w-full py-2 rounded-md"
+      className="bg-[#06D440] text-white text-sm sm:text-base flex items-center justify-center gap-4 w-full py-2 rounded-md"
     >
+      {pending && <Loader />}
       {pending ? "Processing..." : "Log In"}
     </button>
   );

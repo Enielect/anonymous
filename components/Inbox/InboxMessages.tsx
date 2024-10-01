@@ -6,6 +6,7 @@ import Modal from "../Modal";
 import { DeleteModalCard } from "../modal/ModalCard";
 import { getTimeAgo, web_url } from "@/lib/utils";
 import { deleteInbox } from "@/app/actions/inbox";
+import Loader from "../Loader";
 
 type Message = {
   body: string;
@@ -31,7 +32,11 @@ const InboxMessages = ({
       <TopNav inboxName={inboxName} inbox_id={inbox_id} name={inboxName} />
       <div className="space-y-3 px-5 py-5 pt-[80px]">
         {inboxMessages
-          .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          .sort(
+            (a, b) =>
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime()
+          )
           .map(({ body, id, created_at }) => (
             <div
               key={id}
@@ -73,9 +78,10 @@ function TopNav({ name, inboxName, inbox_id }: TopNavProp) {
         <DeleteModalCard inboxName={name} onClose={() => setIsDelete(false)}>
           <button
             disabled={pending}
-            className="p-[5px] bg-[#06D440] text-sm sm:text-base text-white w-full rounded-md flex-grow"
+            className="bg-[#06D440] text-white text-sm sm:text-base flex items-center justify-center gap-4 w-full py-2 rounded-md"
             onClick={handleDelete}
           >
+            {pending && <Loader />}
             {pending ? "Deleting..." : "Confirm"}
           </button>
         </DeleteModalCard>
