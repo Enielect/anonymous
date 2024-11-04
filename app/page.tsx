@@ -194,10 +194,14 @@ function AboutSection() {
               <div>
                 <p>Bukunmi</p>
                 <p>(UI/UX Engineer)</p>
-                <div className="flex justify-center py-2 space-x-2">
+                <a
+                  href="mailto:bukunmiogunneye0@gmail.com"
+                  target="_blank"
+                  className="flex justify-center py-2 space-x-2"
+                >
                   {/* link to my gmail */}
                   bukunmiogunneye0@gmail.com
-                </div>
+                </a>
               </div>
             </div>
           </div>
